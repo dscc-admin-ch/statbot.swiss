@@ -1,0 +1,36 @@
+{
+  "en": {
+    "hard": {
+      "mean": "34.43",
+      "std": "0.00"
+    },
+    "soft": {
+      "mean": "40.00",
+      "std": "0.80"
+    },
+    "partial": {
+      "mean": "39.67",
+      "std": "0.66"
+    },
+    "number_of_examples": {
+      "mean": "61.00"
+    }
+  },
+  "de": {
+    "hard": {
+      "mean": "46.83",
+      "std": "0.60"
+    },
+    "soft": {
+      "mean": "54.15",
+      "std": "0.60"
+    },
+    "partial": {
+      "mean": "57.08",
+      "std": "0.49"
+    },
+    "number_of_examples": {
+      "mean": "82.00"
+    }
+  }
+}

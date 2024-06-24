@@ -1,0 +1,202 @@
+{
+  "5": [
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 87.5,
+          "soft": 87.5,
+          "partial": 87.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 33.33,
+          "partial": 44.44,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 18.75,
+          "soft": 31.25,
+          "partial": 43.75,
+          "number_of_examples": 16
+        },
+        "unknown": {
+          "hard": 15.38,
+          "soft": 19.23,
+          "partial": 26.92,
+          "number_of_examples": 26
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 55.56,
+          "soft": 55.56,
+          "partial": 66.67,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 40.0,
+          "soft": 73.33,
+          "partial": 80.0,
+          "number_of_examples": 15
+        },
+        "unknown": {
+          "hard": 40.0,
+          "soft": 46.0,
+          "partial": 48.0,
+          "number_of_examples": 50
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 87.5,
+          "soft": 87.5,
+          "partial": 87.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 33.33,
+          "partial": 44.44,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 18.75,
+          "soft": 31.25,
+          "partial": 43.75,
+          "number_of_examples": 16
+        },
+        "unknown": {
+          "hard": 15.38,
+          "soft": 19.23,
+          "partial": 26.92,
+          "number_of_examples": 26
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 55.56,
+          "soft": 55.56,
+          "partial": 66.67,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 40.0,
+          "soft": 73.33,
+          "partial": 80.0,
+          "number_of_examples": 15
+        },
+        "unknown": {
+          "hard": 40.0,
+          "soft": 46.0,
+          "partial": 48.0,
+          "number_of_examples": 50
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 87.5,
+          "soft": 87.5,
+          "partial": 87.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 33.33,
+          "partial": 44.44,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 18.75,
+          "soft": 31.25,
+          "partial": 43.75,
+          "number_of_examples": 16
+        },
+        "unknown": {
+          "hard": 15.38,
+          "soft": 19.23,
+          "partial": 23.08,
+          "number_of_examples": 26
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 55.56,
+          "soft": 55.56,
+          "partial": 66.67,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 40.0,
+          "soft": 73.33,
+          "partial": 80.0,
+          "number_of_examples": 15
+        },
+        "unknown": {
+          "hard": 38.0,
+          "soft": 44.0,
+          "partial": 46.0,
+          "number_of_examples": 50
+        }
+      }
+    }
+  ]
+}

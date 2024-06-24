@@ -1,0 +1,191 @@
+{
+  "1": [
+    {
+      "hard": 16.78,
+      "soft": 23.78,
+      "npartial": 26.57
+    },
+    {
+      "hard": 16.78,
+      "soft": 23.78,
+      "npartial": 26.57
+    },
+    {
+      "hard": 16.78,
+      "soft": 23.78,
+      "npartial": 26.57
+    },
+    {
+      "hard": 17.48,
+      "soft": 23.78,
+      "npartial": 26.57
+    },
+    {
+      "hard": 16.78,
+      "soft": 23.78,
+      "npartial": 26.57
+    }
+  ],
+  "2": [
+    {
+      "hard": 22.38,
+      "soft": 27.97,
+      "npartial": 30.07
+    },
+    {
+      "hard": 20.98,
+      "soft": 26.57,
+      "npartial": 28.67
+    },
+    {
+      "hard": 20.28,
+      "soft": 25.87,
+      "npartial": 27.97
+    },
+    {
+      "hard": 22.38,
+      "soft": 27.97,
+      "npartial": 30.07
+    },
+    {
+      "hard": 19.58,
+      "soft": 25.17,
+      "npartial": 27.97
+    }
+  ],
+  "3": [
+    {
+      "hard": 21.68,
+      "soft": 27.97,
+      "npartial": 30.07
+    },
+    {
+      "hard": 21.68,
+      "soft": 27.97,
+      "npartial": 30.07
+    },
+    {
+      "hard": 22.38,
+      "soft": 28.67,
+      "npartial": 30.07
+    },
+    {
+      "hard": 23.78,
+      "soft": 30.07,
+      "npartial": 31.47
+    },
+    {
+      "hard": 23.08,
+      "soft": 29.37,
+      "npartial": 31.47
+    }
+  ],
+  "4": [
+    {
+      "hard": 26.57,
+      "soft": 32.87,
+      "npartial": 34.97
+    },
+    {
+      "hard": 25.17,
+      "soft": 31.47,
+      "npartial": 33.57
+    },
+    {
+      "hard": 25.17,
+      "soft": 31.47,
+      "npartial": 32.87
+    },
+    {
+      "hard": 26.57,
+      "soft": 32.87,
+      "npartial": 34.97
+    },
+    {
+      "hard": 26.57,
+      "soft": 32.87,
+      "npartial": 34.27
+    }
+  ],
+  "5": [
+    {
+      "hard": 22.38,
+      "soft": 31.47,
+      "npartial": 37.06
+    },
+    {
+      "hard": 21.68,
+      "soft": 30.77,
+      "npartial": 35.66
+    },
+    {
+      "hard": 21.68,
+      "soft": 30.77,
+      "npartial": 35.66
+    },
+    {
+      "hard": 20.98,
+      "soft": 30.07,
+      "npartial": 34.97
+    },
+    {
+      "hard": 21.68,
+      "soft": 30.77,
+      "npartial": 36.36
+    }
+  ],
+  "6": [
+    {
+      "hard": 28.67,
+      "soft": 35.66,
+      "npartial": 38.46
+    },
+    {
+      "hard": 27.97,
+      "soft": 34.97,
+      "npartial": 37.76
+    },
+    {
+      "hard": 28.67,
+      "soft": 35.66,
+      "npartial": 38.46
+    },
+    {
+      "hard": 27.97,
+      "soft": 34.97,
+      "npartial": 37.76
+    },
+    {
+      "hard": 28.67,
+      "soft": 35.66,
+      "npartial": 38.46
+    }
+  ],
+  "8": [
+    {
+      "hard": 21.68,
+      "soft": 29.37,
+      "npartial": 32.17
+    },
+    {
+      "hard": 20.98,
+      "soft": 28.67,
+      "npartial": 31.47
+    },
+    {
+      "hard": 21.68,
+      "soft": 28.67,
+      "npartial": 31.47
+    },
+    {
+      "hard": 21.68,
+      "soft": 29.37,
+      "npartial": 31.47
+    },
+    {
+      "hard": 20.98,
+      "soft": 28.67,
+      "npartial": 30.77
+    }
+  ]
+}

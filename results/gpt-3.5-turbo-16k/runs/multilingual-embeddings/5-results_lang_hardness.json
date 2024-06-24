@@ -1,0 +1,334 @@
+{
+  "5": [
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 75.0,
+          "soft": 75.0,
+          "partial": 75.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 29.17,
+          "soft": 45.83,
+          "partial": 41.67,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 27.78,
+          "soft": 27.78,
+          "partial": 27.78,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 62.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 44.44,
+          "soft": 44.44,
+          "partial": 44.44,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 50.0,
+          "soft": 70.83,
+          "partial": 75.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 46.34,
+          "soft": 48.78,
+          "partial": 48.78,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 75.0,
+          "soft": 75.0,
+          "partial": 75.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 29.17,
+          "soft": 41.67,
+          "partial": 41.67,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 27.78,
+          "soft": 27.78,
+          "partial": 27.78,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 62.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 44.44,
+          "soft": 44.44,
+          "partial": 44.44,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 50.0,
+          "soft": 70.83,
+          "partial": 75.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 46.34,
+          "soft": 48.78,
+          "partial": 48.78,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 75.0,
+          "soft": 75.0,
+          "partial": 75.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 29.17,
+          "soft": 45.83,
+          "partial": 41.67,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 27.78,
+          "soft": 27.78,
+          "partial": 27.78,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 62.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 44.44,
+          "soft": 44.44,
+          "partial": 55.56,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 50.0,
+          "soft": 70.83,
+          "partial": 75.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 43.9,
+          "soft": 46.34,
+          "partial": 46.34,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 75.0,
+          "soft": 75.0,
+          "partial": 75.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 29.17,
+          "soft": 41.67,
+          "partial": 41.67,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 27.78,
+          "soft": 27.78,
+          "partial": 27.78,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 62.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 44.44,
+          "soft": 44.44,
+          "partial": 44.44,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 50.0,
+          "soft": 70.83,
+          "partial": 75.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 43.9,
+          "soft": 46.34,
+          "partial": 46.34,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 75.0,
+          "soft": 75.0,
+          "partial": 75.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 29.17,
+          "soft": 41.67,
+          "partial": 45.83,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 27.78,
+          "soft": 27.78,
+          "partial": 27.78,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 62.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 44.44,
+          "soft": 44.44,
+          "partial": 55.56,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 50.0,
+          "soft": 70.83,
+          "partial": 75.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 43.9,
+          "soft": 46.34,
+          "partial": 46.34,
+          "number_of_examples": 41
+        }
+      }
+    }
+  ]
+}

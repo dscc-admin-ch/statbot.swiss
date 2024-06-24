@@ -1,0 +1,244 @@
+name,table_name,data_type,title,title_en,example_values
+offence_criminal_code,criminal_offences_registered_by_police,categorical,offence as defined by Swiss criminal code,offence as defined by Swiss criminal code,"Vehicle burglary (art. 139),Falsification of money (art. 241)"
+number_criminal_offences_registered,criminal_offences_registered_by_police,numeric,number of criminal offences registered by Swiss police according to Swiss Criminal Code,number of criminal offences registered by Swiss police according to Swiss Criminal Code,null
+number_criminal_offences_unsolved,criminal_offences_registered_by_police,numeric,number of unsolved criminal offences registered by Swiss police according to Swiss Criminal Code,number of unsolved criminal offences registered by Swiss police according to Swiss Criminal Code,null
+number_criminal_offences_solved,criminal_offences_registered_by_police,numeric,number of resolved criminal offences registered by Swiss police according to Swiss Criminal Code,number of resolved criminal offences registered by Swiss police according to Swiss Criminal Code,null
+number_criminal_offences_completed,criminal_offences_registered_by_police,numeric,number of completed criminal offences registered by Swiss police according to Swiss Criminal Code,number of completed criminal offences registered by Swiss police according to Swiss Criminal Code,null
+total_population,demographic_balance_by_canton,numeric,Total population recorded this year,Total population recorded this year,"6335243,5421746,913497"
+births,demographic_balance_by_canton,numeric,Number of live births recorded,Number of live births recorded,"73747,61611,12136"
+deaths,demographic_balance_by_canton,numeric,Number of deaths recorded,Number of deaths recorded,"59763,56032,3731"
+immigration,demographic_balance_by_canton,numeric,Number of people becoming Swiss residents,Number of people becoming Swiss residents,"121420,28483,92937"
+emigration,demographic_balance_by_canton,numeric,Number of Swiss residents leaving,Number of Swiss residents leaving,"97743,27796,69947"
+number_criminal_offences_completed_unsolved,criminal_offences_registered_by_police,numeric,Number of completed and unsolved criminal offences registered by Swiss police according to Swiss Criminal Code,Number of completed and unsolved criminal offences registered by Swiss police according to Swiss Criminal Code,null
+number_criminal_offences_completed_solved,criminal_offences_registered_by_police,numeric,Number of completed and resolved criminal offences registered by Swiss police according to Swiss Criminal Code,Number of completed and resolved criminal offences registered by Swiss police according to Swiss Criminal Code,null
+number_criminal_offences_attempted,criminal_offences_registered_by_police,numeric,number of attempted criminal offences registered by Swiss police according to Swiss Criminal Code,number of attempted criminal offences registered by Swiss police according to Swiss Criminal Code,null
+number_criminal_offences_attempted_unsolved,criminal_offences_registered_by_police,numeric,number of attempted und unsolved criminal offences registered by Swiss police according to Swiss Criminal Code,number of attempted und unsolved criminal offences registered by Swiss police according to Swiss Criminal Code,null
+number_criminal_offences_attempted_solved,criminal_offences_registered_by_police,numeric,number of attempted and resolved criminal offences registered by Swiss police according to Swiss Criminal Code,number of attempted and resolved criminal offences registered by Swiss police according to Swiss Criminal Code,null
+in_migration_from_another_canton,demographic_balance_by_canton,numeric,Number of people moving in from another canton,Number of people moving in from another canton,"134359,119608,14751"
+out_migration_to_another_canton,demographic_balance_by_canton,numeric,Number of people moving to a different canton,Number of people moving to a different canton,"134359,119608,14751"
+total_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,Total Anzahl Schadenfalle,Total number of claims,796681857
+thema,abstimmungsvorlagen_seit_1971,categorical,Thema,Topic,"Aussenpolitik,Öffentliche Finanzen,Umwelt und Lebensraum"
+anzahl_abstimmungsvorlagen,abstimmungsvorlagen_seit_1971,numeric,Anzahl Abstimmungsvorlagen,Number of voting bills,3
+partei,nationalratswahlen,categorical,Partei,Political party,"FDP,CVP,SP,Sep.,Übrige"
+anzahl_parteistimmen,nationalratswahlen,numeric,Anzahl Parteistimmen,number of party votes,null
+anzahl_fiktive_wahlende,nationalratswahlen,numeric,Anzahl fiktive Wählende,Number of fictitious voters,null
+parteistarke_in_prozent,nationalratswahlen,numeric,Parteistärke in Prozent,Party strength in percent,null
+offence_category,criminal_offences_registered_by_police,categorical,broad Category of criminal offence,broad Category of criminal offence,"Property,Liberty"
+net_migration,demographic_balance_by_canton,numeric,Difference between the number of arrivals and departures,Difference between the number of arrivals and departures,"23677,687,22990"
+acquisition_of_swiss_citizenship,demographic_balance_by_canton,numeric,Number of people acquiring swiss nationality,Number of people acquiring swiss nationality,"0,14299,-14299"
+statistical_adjustment,demographic_balance_by_canton,numeric,Changes to the population size that cannot be clearly attributed to demographic movements,Changes to the population size that cannot be clearly attributed to demographic movements,"0,574,-34"
+population_change,demographic_balance_by_canton,numeric,Difference in the number of people compared to the previous year,Difference in the number of people compared to the previous year,"37661,20565,17096"
+citizenship_category,demographic_balance_by_canton,categorical,Citizenship category,Citizenship category,"Citizenship (category) - total,Foreign country,Switzerland"
+einwohner,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,Einwohner,Inhabitants,"2683,2318,1350"
+wasserkraft_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Wasserkraft, GWh","Hydropower, GWh","0,1.234,6.698"
+biomasse_holz_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Biomasse, Holz, GWh","Biomass, Wood, GWh","0,2.266,0.404"
+rechtsform,arztpraxen_ambulante_zentren,categorical,Rechtsform der Praxis,Legal form of the practice,"Rechtsform - Total,Einzelunternehmen,Andere Rechtsform"
+geschlecht,arztpraxen_ambulante_zentren,categorical,Geschlecht,Gender,"Geschlecht - Total,Mann,Frau"
+altersgruppe,arztpraxen_ambulante_zentren,categorical,Altersklasse,age group,"Altersklasse - Total,Unter 45 Jahre,45-54 Jahre"
+anzahl_beschaeftigte,arztpraxen_ambulante_zentren,numeric,Anzahl Beschäftigte,Number of employees,null
+anzahl_vollzeitaquivalente,arztpraxen_ambulante_zentren,numeric,Anzahl Vollzeitäquivalente,Number of full-time equivalents,null
+mio_chf_gross_value_added_of_tourism,tourism_economy_by_canton,numeric,Amount in million CHF of Gross Value that was added by tourism,Amount in million CHF of Gross Value that was added by tourism,null
+percent_share_gross_value_added_of_tourism,tourism_economy_by_canton,numeric,Percentage share of Gross Value that was added by tourism,Percentage share of Gross Value that was added by tourism,null
+total_full_time_employment_of_tourism,tourism_economy_by_canton,numeric,Full time employment (FTE) in Tourism,Full time employment in Tourism,null
+percent_share_full_time_employment_of_tourism,tourism_economy_by_canton,numeric,Percentage share of full time employment in tourism,Percentage share of full time employment in tourism,null
+anzahl_personenwagen_pro_1000_einwohner,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Motorisierungsgrad: Anzahl Personenwagen pro 1000 Einwonhner/-innen.,Motorisation rate: number of cars per 1000 inhabitants.,"485.5,488.6,485.1"
+biogasanlagen_landwirtschaft_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Biogasanlagen, Landwirtschaft, GWh","Biogas plants, Ariculture, GWh","0,4.826,0.308"
+kehricht_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Kehricht, GWh","Waste, GWh","0,49.982734,57.317"
+biogasanlagen_industrie_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Biogasanlagen, Industrie, GWh","Biogas plants, Industry, GWh","0,0.651573,1.819"
+biogasanlagen_abwasser_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Biogasanlagen, Abwasser, GWh","Biogas plants, Wastewater, GWh","0,0.272,1.219"
+photovoltaik_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Solarenergie, GWh","Solar energy, GWh","3.814,1.879,4.268"
+wind_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Wind, GWh","Wind, GWh","0,0.005,0.006"
+total_gwh,thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,numeric,"Total, GWh","Total, GWh","3.814,1.879,9.094"
+total_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,Totale Schadensumme in 1000 CHF,Total damage amount in 1000 CHF,182472448024074
+feuerzeug_rauchzeug_licht_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,122123132
+feuerzeug_rauchzeug_licht_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,209525525078
+elektrizitaet_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,234246228
+vorsatzliche_brandstift_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,508360635374
+vorsatzliche_brandstift_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,142225
+brandstift_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,2149632470
+feuerungsanl_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,Feuerungsanlagen: Anzahl Schadenfälle,Incineration plants: Number of claims,676547
+feuerungsanl_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,Feuerungsanlagen: Totale Schadensumme in 1000 CHF,Incineration plants: Total amount of damage in 1000 CHF,15601231792
+explosion_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,262125
+explosion_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,7821180211
+uebrige_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,269176342
+uebrige_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,16449331734
+unbekannt_anzahl_schadenfalle,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,512857
+unbekannt_schaden_1000_chf,aargau_brandversicherung_brandschaden_anzahl_schadensummen,numeric,null,null,675118838678
+citizenship_category_husband,divorces_duration_of_marriage_citizenship_categories,categorical,citizen category husband: either foreign or Swiss,citizen category husband: either foreign or Swiss,"Foreign country,Citizenship of husband - total,Switzerland"
+citizenship_category_wife,divorces_duration_of_marriage_citizenship_categories,categorical,citizen category wife: either foreign or Swiss,citizen category wife: either foreign or Swiss,"Foreign country,Citizenship of wife - total,Switzerland"
+duration_of_marriage,divorces_duration_of_marriage_citizenship_categories,categorical,duration class of the marriage,duration class of marriage,"Duration of marriage - total,10-14 years,20 years or more"
+amount,divorces_duration_of_marriage_citizenship_categories,numeric,number of divorces,number of divorces,10
+sektor,thurgau_beschaftigte_nach_sektoren_und_gemeinden,categorical,Wirtschaftssektor,Economic sector,"Tertiär,Primär,Sekundär"
+beschaftigte_personen,thurgau_beschaftigte_nach_sektoren_und_gemeinden,numeric,Beschäftigte Personen,Employed persons,"4871,363,1077"
+vehicle_type,stock_vehicles,categorical,Vehicle type,Vehicle type,"passenger_cars,trailers,motorcycles"
+amount,stock_vehicles,numeric,Amount of vehicles,Amount of vehicles,"0,2,240"
+fuel_type,stock_vehicles,categorical,Fuel type,Fuel type,"Hydrogen,Electric,Diesel-electric: Normal-hybrid"
+emissions_in_million_tons_co2_equivalent,greenhouse_gas_emissions_through_consumption,numeric,Greenhouse gas emissions in million metric tons of CO2 equivalent,Greenhouse gas emissions in million metric tons of CO2 equivalent,117.900561800408
+vorlage,volksabstimmung_nach_kanton_seit_1861,categorical,Titel der Abstimmungsvorlage,Title of the referendum,"Bundesgesetz über die Errichtung der schweizerischen Bundesbank,Bundesbeschluss betreffend Revision von Art. 103 der Bundesverfassung und Aufnahme eines Artikels 114bis in die Bundesverfassung,Volksinitiative «für die vermehrte Mitbestimmung der Bundesversammlung und des Schweizervolkes im Nationalstrassenbau»"
+anzahl_stimmberechtigte,volksabstimmung_nach_kanton_seit_1861,numeric,Anzahl Stimmberechtigte,number of voters,null
+anzahl_abgegebene_stimmen,volksabstimmung_nach_kanton_seit_1861,numeric,Anzahl abgegebene Stimmenen,number of votes cast,null
+beteiligung_in_prozent,volksabstimmung_nach_kanton_seit_1861,numeric,Wahlbeteiligung in Prozent,Voter turnout in percent,null
+anzahl_gueltige_stimmzettel,volksabstimmung_nach_kanton_seit_1861,numeric,Anzahl gültige Stimmenzettel,Number of valid ballot papers,null
+anzahl_ja_stimmen,volksabstimmung_nach_kanton_seit_1861,numeric,Anzahl ja Stimmen,number yes votes,null
+anzahl_nein_stimmen,volksabstimmung_nach_kanton_seit_1861,numeric,Anzahl nein Stimmen,Number of no votes,null
+ja_in_prozent,volksabstimmung_nach_kanton_seit_1861,numeric,ja Stimmen in Prozent der Gesamtstimmen,Yes Votes as a percentage of the total votes,null
+anzahl_veranlagungen,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"5433,8141,3226"
+reineinkommen_mittelwert,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"47514,63915,53985"
+reineinkommen_median,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"44300,50600,47200"
+reineinkommen_gini_koeffizient,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"0.334,0.424,0.382"
+steuerbares_einkommen_mittelwert,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"42282,56532,48135"
+steuerbares_einkommen_median,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"39900,45200,42000"
+ertrag_einkommenssteuer_mittelwert,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"6285,9946,7823"
+ertrag_einkommenssteuer_median,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"5082,6475,5610"
+citizenship_category_husband,marriage_citizenship,categorical,citizen category husband: either foreign or Swiss,citizen category husband: either foreign or Swiss,"Foreign country,Citizenship of husband - total,Switzerland"
+rententyp,ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,categorical,Rentenart,Pension type,"Zusatzrente für Kinder (Mutter),Zusatzrente für Ehepartner,Altersrente"
+wohnsitzstaat_kategorie,ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,categorical,Wohnsitz Kategorie,Residence category,"Ausland,Schweiz,Wohnsitzstaat - Total"
+staatsangehorigkeit_kategorie,ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,categorical,Staatsangehörigkeit Kategorie,nationality category,"Ausland,Schweiz,Staatsangehörigkeit - Total"
+geschlecht,ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,categorical,Geschlecht,Gender,"Frau,Mann,Geschlecht - Total"
+anzahl_renten,ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,numeric,Anzahl Renten,Number of pensions,null
+rentensumme_in_tausend_franken,ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,numeric,Rentensumme in Tausend CHF,Pension amount in thousands of CHF,null
+renten_mittelwert_in_franken,ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,numeric,Renten Mittelwert in CHF,Average pensions in CHF,null
+citizenship_category_wife,marriage_citizenship,categorical,citizen category wife: either foreign or Swiss,citizen category wife: either foreign or Swiss,"Foreign country,Citizenship of wife - total,Switzerland"
+amount,marriage_citizenship,numeric,number of marriages,number of divorces,10
+reinvermogen_mittelwert,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"32774,149771,89835"
+reinvermogen_median,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"0,17000,18000"
+reinvermogen_gini_koeffizient,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"0.91,0.89,0.919"
+steuerbares_vermogen_mittelwert,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"30636,137175,84603"
+steuerbares_vermogen_median,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"0,2128,4321"
+ertrag_vermogenssteuer_mittelwert,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"175,961,591"
+ertrag_vermogenssteuer_median,basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,numeric,null,null,"0,15,1"
+nationalitat,basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,categorical,Nationalität,Nationality,"Schweiz,Ausland"
+gesamt_anzahl_personen,basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,numeric,Gesamtanzahl Personen,Total number of people,null
+​anzahl_evangelisch_reformiert,basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,numeric,Anzahl Evangelisch-Reformierten,Number of Reformed Protestants,null
+​anzahl_romisch_katholisch,basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,numeric,Anzahl der Römisch-Katholischen,Number of Roman Catholics,null
+anzahl_christkatholisch,basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,numeric,Anzahl der Christkatholischen,Number of Christian Catholics,null
+anzahl_unbekannt_konfession,basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,numeric,Anzahl der Personen mit unbekannter Konfession,Number of people with unknown confession,null
+faelle,zurich_effektive_preise_wohnbauland,numeric,Anzahl Transaktionen von unbebautem Wohnbauland,Number of transactions of undeveloped residential land,167715272076
+durschnitt_preis_chf_pro_m2,zurich_effektive_preise_wohnbauland,numeric,Durchschnittspreis in CHF pro Quadratmeter,Mean price in CHF per square meter,169175171
+quantil_25_preis_chf_pro_m2,zurich_effektive_preise_wohnbauland,numeric,Unteres Quartil der Preise in CHF pro Quadratmeter,Lower quartile of prices in CHF per square meter,94100104
+median_preis_chf_pro_m2,zurich_effektive_preise_wohnbauland,numeric,Median Preis in CHF pro Quadratmeter,Median price in CHF per square meter,131150137
+quantil_75_preis_chf_pro_m2,zurich_effektive_preise_wohnbauland,numeric,Oberes Quartil der Preise in CHF pro Quadratmeter,Upper quartile of prices in CHF per square meter,180198191
+energietraeger,energiebilanz_schweiz_in_tera_joule,categorical,Energieträger,Energy source,"Elektrizität,Wasserkraft,Uebrige erneuerbare Energien,Müll und Industrieabfälle"
+nutzungs_sektor,energiebilanz_schweiz_in_tera_joule,categorical,Nutzungs Rubrik,Usage sector,"Endverbrauch - Haushalte,Endverbrauch - Industrie,Import"
+energiemenge_in_tera_joule,energiebilanz_schweiz_in_tera_joule,numerical,Numeric value in Terajoule,Numeric Value in Tera Joule,"NA,14820,4820"
+co_mg_m3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Kohlenmonoxid (CO) in mg/m3,Carbon monoxide (CO) in mg/m3,"3.69741935483871,2.3325,2.45451612903226"
+no2_ug_m3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Stickstoffdioxid (NO2) in µg/m3,Nitrogen dioxide (NO2) in µg/m3,"38.5848387096774,47.8067857142857,48.0387096774194"
+no_ug_m3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Stickstoffmonoxid (NO) in µg/m3,Nitrogen monoxide (NO) in µg/m3,"162.903870967742,157.969285714286,171.871290322581"
+nox_ppb,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Stickstoffoxide (NOx) in ppb,Nitrogen oxides (NOx) in ppb,"150.781612903226,151.648214285714,162.916774193548"
+so2_ug_m3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Schwefeldioxid (SO2) in µg/m3,Sulfur dioxide (SO2) in µg/m3,"83.6127586206897,100.517142857143,69.5396666666667"
+anteil_sozialhilfeempfanger,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.0384108454,0.0566399639,0.0616651708"
+anteil_auslander,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.3403313877,0.3193049757,0.3919011668"
+anteil_personen_ohne_religionszugehorigkeit,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.4882319714,0.4715107751,0.4412121852"
+anteil_personen_in_einpersonenhaushalten,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.3000205634,0.2883006761,0.2792870645"
+gymnasialquote_anteil_progymnasium,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.5740740741,0.2924528302,0.3366336634"
+altersquotient_uber_64_jahr,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.3601476015,0.3394025102,0.2155230596"
+anteil_sesshafte_10_jahr,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.3055921672,0.3543946745,0.3012512539"
+jugendquotient_unter_20_jahr,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.2076752768,0.227328973,0.2048743907"
+baujahr_der_wohngebaude,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"1918.3832335,1939.8939394,1931.8792135"
+anteil_einfamilienhauser,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.1984602224,0.1363636364,0.029494382"
+o3_ug_m3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Ozon (O3) in µg/m3,Ozone (O3) in µ3/m3,"11.4648148148148,6.99464285714286"
+pm10_ug_m3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Schwebestaub PM10 (Durchmesser 10µm oder weniger) in µg/m3,Airborne dust PM10 (diameter 10µm or less) in µg/m3,"33.9512,30.7521428571429"
+anteil_grunflachen,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.2390179539,0.3585967524,0.1742961539"
+flache_pro_wohnung_m2,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"82.343801381,69.810768933,70.418289354"
+wohnflache_pro_person_m2,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"47.311517,39.026379,38.692324"
+vermogenssteuer_pro_veranlagung,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"2378.931266,483.02681775,460.5646986"
+einkommenssteuer_pro_veranlagung,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"10820.800512,7123.8581681,7075.5415415"
+farmholding_system,employees_farmholdings_agricultural_area_livestock_per_canton,categorical,null,null,"Farmholding system - total,Organic farming,Conventional farming"
+farmholdings,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"48344,48864,49363"
+employees_total,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"149578,150231,149521"
+full_time_employees_75_percent_or_more,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"66349,66453,66333"
+part_time_employees_50_75_percent,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"30083,30038,29920"
+part_time_employees_2_less_than_50_percent,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"53146,53740,53268"
+employees_men,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"94706,95486,95252"
+employees_women,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"54872,54745,54269"
+employees_women_manager_label,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"3472,3362,3233"
+employees_swiss,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"131072,131955,131581"
+employees_foreign_nationals,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"18506,18276,17940"
+family_employees,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"112047,113317,113847"
+beef_cattle_and_cows_farm,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"32581,33091,33662"
+horse_and_other_equine_farm,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"11123,11196,11227"
+sheep_farm,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"7969,7977,8016"
+goat_farm,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"6559,6592,6355"
+erwerbstatigenquote,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.8077279565,0.7324650618,0.7397509203"
+arbeitsplatze_pro_einwohner,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.9906581653,0.1403727831,0.6350379648"
+pig_farms,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"5467,5561,5600"
+poultry_farm,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"14876,14434,13485"
+farms_with_other_animals,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"6138,6101,6000"
+utilised_agricultural_area_in_hectares,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"1042013.785,1042053.004,1044033.706"
+arable_land_in_hectares,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"276114.0758,276496.4816,274448.9291"
+grassland_in_hectares,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"726091.9808,725854.0912,730039.4586"
+permanent_crops_in_hectares,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"24040.2951,24285.0786,24061.4945"
+other_utilised_agricultural_area_in_hectares,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"15767.4333,15417.3522,15483.8239"
+livestock_beef_cattle_and_cows,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"1525270,1513701,1515123"
+livestock_horses_and_other_equines,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"80950,80096,80072"
+livestock_sheep,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"355893,349112,343528"
+livestock_goats,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"82313,82045,79562"
+livestock_pigs,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"1372772,1366359,1348306"
+livestock_poultry,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"13219724,12676402,12541044"
+livestock_other_animals,employees_farmholdings_agricultural_area_livestock_per_canton,numeric,null,null,"126789,137616,131876"
+aufgabenbereich_cofog_feingliederung,staatsausgaben_nach_aufgabenbereichen_cofog,categorical,Aufgabenbereich des Staates (COFOG Feingliederung),Scope of functions of the state (COFOG narrow),"Alter,Wasserversorgung,Polizei"
+aufgabenbereich_cofog_grobgliederung,staatsausgaben_nach_aufgabenbereichen_cofog,categorical,Aufgabenbereich des Staates (COFOG Grobgliederung),Scope of functions of the state (COFOG broad),"Umweltschutz,Bildungswesen,Freizeitgestaltung, Sport, Kultur und Religion"
+institutioneller_sektor,staatsausgaben_nach_aufgabenbereichen_cofog,categorical,institutioneller Sektor,institutional sector,"Staat,Kantone,Bund,Gemeinden,Öffentliche Sozialversicherungen"
+ausgaben_in_mio_chf,staatsausgaben_nach_aufgabenbereichen_cofog,numeric,Ausgaben in Millionen CHF,Expenditures in millions of CHF,null
+prozent_der_gesamtausgaben,staatsausgaben_nach_aufgabenbereichen_cofog,numeric,Prozent der Gesamtaugaben,Percent of total expenditure,null
+function_cofog_narrow,government_expenditure_by_function_cofog,categorical,Narrow function of govenrment by COFOG (Classification of the functions of government) of the United Nations,Narrow function of govenrment by COFOG (Classification of the functions of government) of the United Nations,"Foreign economic aid,General services,Executive and legislative organs, financial and fiscal affairs, external affairs"
+function_cofog_broad,government_expenditure_by_function_cofog,categorical,Broad function of govenrment by COFOG (Classification of the functions of government) of the United Nations,Broad function of govenrment by COFOG (Classification of the functions of government) of the United Nations,"General public services,Defence,Public order and safety"
+institutional_sector,government_expenditure_by_function_cofog,categorical,Institutional Sector,Institutional Sector,"Government,   Confederation,Canton,Commune,Social security funds"
+expenses_in_million_chf,government_expenditure_by_function_cofog,numeric,Expenses in million CHF,Expenses in million CHF,"2167,2341,2599"
+percentage_of_total_expenses,government_expenditure_by_function_cofog,numeric,percentage of total expenses,percentage of total expenses,"1.1,1.2,2.6"
+arbeitslosenquote,basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,numeric,null,null,"0.0252819637,0.0466659488,0.0400550591"
+genutzte_infrastruktur,medizinisch_technische_infrastruktur,categorical,genutzte Infrastruktur,infrastructure used,"Gamma Camera (inklusive Szintigraphie und SPECT-Scanner),Linearbeschleuniger (Radiotherapie),MRI"
+anzahl_gerate,medizinisch_technische_infrastruktur,numeric,Anzahl der Geräte,number of devices,null
+anzahl_untersuchungen_total,medizinisch_technische_infrastruktur,numeric,Anzahl aller Untersuchungen,Number of all examinations,null
+anzahl_ambulante_untersuchungen,medizinisch_technische_infrastruktur,numeric,Anzahl der ambulanten Untersuchungen,Number of outpatient examinations,null
+anzahl_stationare_untersuchungen,medizinisch_technische_infrastruktur,numeric,Anzahl der stationären Untersuchungen,Number of inpatient examinations,null
+weinernte_total_hl,aargau_obst_rebbau_rebland_wein_ernte,numeric,Weinernte in hl: Total,Wine harvest in hl: Total,167892306117054
+weinernte_rot_europaische_hl,aargau_obst_rebbau_rebland_wein_ernte,numeric,Weinernte in hl: rotes Gewächs: Europäische Reben,Wine harvest in hl: red grapes: European vines,103651386111290
+weinernte_rot_kreuzung_rot_hl,aargau_obst_rebbau_rebland_wein_ernte,numeric,Weinernte in hl: rotes Gewächs: Direktträgerkreuzungen,Grape harvest in hl: red growth: Direct carrier crossings,679795435
+weinernte_europaische_weiss_hl,aargau_obst_rebbau_rebland_wein_ernte,numeric,Weinernte in hl: rotes Gewächs: Europäische Reben,Wine harvest in hl: red grapes: European vines,574484055329
+verbrauchskategorie,median_strompreis_per_kanton,categorical,Verbrauchskategorie,Consumption category,"C5,H4,H2"
+verbrauchskategorie_beschreibung,median_strompreis_per_kanton,categorical,Verbrauchskategorie Beschreibung,Consumption category description,"4'500 kWh/Jahr: 5-Zimmerwohnung mit Elektroherd und Tumbler (ohne Elektroboiler),7'500 kWh/Jahr: 5-Zimmer-Einfamilienhaus mit Elektroherd' Elektroboiler und Tumbler"
+verbrauchskategorie_grosse_kwh_pro_jahr,median_strompreis_per_kanton,numeric,Verbrauchskategorie Grösse (kwh/jahr),Consumption category size (kwh/year),"500000,4500,2500"
+energieprodukt,median_strompreis_per_kanton,categorical,Energieprodukt,Energy product,"Günstigstes Produkt,Standardprodukt"
+mittlerer_preis_rappen_pro_kw_hr,median_strompreis_per_kanton,numeric,Mittlerer Preis in Rappen pro kwh,Average price in rappen per kwh,"17.95067,18.49410,17.25452"
+pn_1_cm3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Partikelanzahl pro cm3,Particle count per cm3,"23403.0509090909,12632.1964516129"
+pm2_5_ug_m3,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,"Schwebestaub PM2.5 (Durchmesser 2,5µm oder weniger) in µg/m3",Airborne dust PM2.5 (diameter 2.5µm or less) in µg/m3,"26.6368181818182,16.9007407407407"
+monat,stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,numeric,Monat,Month,"1,2,3"
+age_class_husband,divorces_duration_of_marriage_age_classes,categorical,age class of the husband,age class of the husband,"Age class of husband - total,Less than 20 years,80-89 years"
+age_class_wife,divorces_duration_of_marriage_age_classes,categorical,age class of the wife,age class of the wife,"Age class of wife - total,Less than 20 years,80-89 years"
+duration_of_marriage,divorces_duration_of_marriage_age_classes,categorical,duration class of the marriage,duration class of marriage,"Duration of marriage - total,5-9 years,20 years or more"
+amount,divorces_duration_of_marriage_age_classes,numeric,Count of divorces,Count of divorces,120
+endverbrauch_elektrizitaet_mwh,basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr,numeric,Endverbrauch Elektrizitaet Mwh,Final consumption of electricity Mwh,536937258529674
+flache_rebland_rote_europaische_reben_ha,aargau_obst_rebbau_rebland_wein_ernte,numeric,Fläche Rebland in ha: rotes Gewächs: Europäische Reben,Area of vineyards in ha: red growth: European vines,244250253
+flache_rebland_kreuzung_rote_weisse_ha,aargau_obst_rebbau_rebland_wein_ernte,numeric,Fläche Rebland in ha: rotes Gewächs: Direktträgerkreuzungen; ab 2016: Rote und weisse Sorten zusammen,Area of vineyards in ha - red cultivars: Direct carrier crosses; from 2016: red and white varieties together,161413
+flache_total,aargau_obst_rebbau_rebland_wein_ernte,numeric,Fläche Rebland in ha: Total,Area of vineyards in ha: Total,119126124
+erntewert_rot_1000_chf,aargau_obst_rebbau_rebland_wein_ernte,numeric,Erntewert in 1000 Franken: rotes Gewächs,Harvest value in 1000 francs: red crop,574487517001
+erntewert_weiss_1000_chf,aargau_obst_rebbau_rebland_wein_ernte,numeric,Erntewert in 1000 Franken: weisse Gewächs,Harvest value in 1000 Swiss francs: white growths,299643832779
+geschlecht,schwyz_standige_wohnbevolkerung_geschlecht_nationalitat,categorical,Geschlecht,Gender,"männlich,weiblich"
+nationalitaet,schwyz_standige_wohnbevolkerung_geschlecht_nationalitat,categorical,Nationalität,Nationality,"Schweiz,Ausland"
+anzahl_personen,schwyz_standige_wohnbevolkerung_geschlecht_nationalitat,numeric,Anzahl Personen,Number of people,"3873,964,2926"
+population_type,resident_population_birthplace_citizenship_type,categorical,population type,population type,"Non permanent resident population,Permanent resident population"
+place_of_birth,resident_population_birthplace_citizenship_type,categorical,Place of birth: Switzerland or abroad,Place of birth: Switzerland or abroad,"Abroad,Switzerland,Place of birth - total"
+citizenship,resident_population_birthplace_citizenship_type,categorical,citizenship,citizenship,"Sweden,São Tomé and Príncipe,Uganda"
+amount,resident_population_birthplace_citizenship_type,numeric,number of persons,number of persons,20
+falle,basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr,numeric,Fälle,Cases,17329
+flache_in_m2,basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr,numeric,Fläche in m2,Area in m2,12300104004700
+quadratmeterpreis_chf,basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr,numeric,Quadratmeterpreis in CHF,Price per square meter in CHF,213266221
+gender,baby_names_favorite_firstname,categorical,gender,gender,"girl,boy"
+first_name,baby_names_favorite_firstname,categorical,First name,First name,"Anna,Martin"
+rank,baby_names_favorite_firstname,numeric,rank,rank,12
+amount,baby_names_favorite_firstname,numeric,amount,amount,20
+forest_zone,number_of_plantations_in_swiss_forest,categorical,forest zone,forest zone,"Switzerland,Jura,Central Plain"
+type_of_owner,number_of_plantations_in_swiss_forest,categorical,owner type,owner type,"Type of owners - total,Public forest,Private forest"
+wood_species,number_of_plantations_in_swiss_forest,categorical,wood species group,wood species group,"Species - total,Hardwood (deciduous),Softwood (conifers)"
+number_of_plantations,number_of_plantations_in_swiss_forest,numeric,number of plantations,number of plantations,"14987125 ,11537284 ,3449841"
+anzahl_personenwagen,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Personenwagen,Number of passenger cars,"10556,10618,10582"
+anzahl_ubrige_personen_transportfahrzeuge_kleinbusse_cars,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,"Anzahl Übrige Personen Transportfahrzeuge (Kleinbusse, cars)","Number of other persons Transport vehicles (minibuses, cars)","73,70,76"
+anzahl_nutzfahrzeuge,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Nutzfahrzeuge,Number of commercial vehicles,"1640,1617,1642"
+anzahl_arbeitsmotorfahrzeuge,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Arbeitsmotorfahrzeuge,Number of labour motor vehicles,"142,152,159"
+anzahl_motorrader,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Motorräder,Number of motorcycles,"1234,1225,1157"
+anzahl_klein_motorrader,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl kleine Motorräder,Number of small motorcycles,"25,34,30"
+anzahl_motorfahrrader,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Motorfahrräder,Number of motorized bicycles,"517,498,469"
+anzahl_landwirtschaftliche_motorfahrzeuge,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Landwirtschaftliche Motorfahrzeuge,Number of agricultural motor vehicles,"46,49,45"
+anzahl_anhaenger,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Anhänger,Number of trailers,"831,820,845"
+anzahl_kollektivfahrzeuge,aargau_privatverkehr_bestand_nach_fahrzeugarten,numeric,Anzahl Kollektivfahrzeuge,Number of collective vehicles,"53,56,55"

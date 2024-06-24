@@ -1,0 +1,186 @@
+{
+  "en": {
+    "unknown": {
+      "hards": {
+        "mean": "15.38",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "19.23",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "25.64",
+        "std": "1.81"
+      },
+      "examples": {
+        "mean": "26.00",
+        "std": "0.00"
+      }
+    },
+    "easy": {
+      "hards": {
+        "mean": "100.00",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "100.00",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "100.00",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "2.00",
+        "std": "0.00"
+      }
+    },
+    "medium": {
+      "hards": {
+        "mean": "87.50",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "87.50",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "87.50",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "8.00",
+        "std": "0.00"
+      }
+    },
+    "hard": {
+      "hards": {
+        "mean": "33.33",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "33.33",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "44.44",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "9.00",
+        "std": "0.00"
+      }
+    },
+    "extra": {
+      "hards": {
+        "mean": "18.75",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "31.25",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "43.75",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "16.00",
+        "std": "0.00"
+      }
+    }
+  },
+  "de": {
+    "unknown": {
+      "hards": {
+        "mean": "39.33",
+        "std": "0.94"
+      },
+      "soft": {
+        "mean": "45.33",
+        "std": "0.94"
+      },
+      "partial": {
+        "mean": "47.33",
+        "std": "0.94"
+      },
+      "examples": {
+        "mean": "50.00",
+        "std": "0.00"
+      }
+    },
+    "easy": {
+      "hards": {
+        "mean": "0.00",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "0.00",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "0.00",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "0.00",
+        "std": "0.00"
+      }
+    },
+    "medium": {
+      "hards": {
+        "mean": "37.50",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "37.50",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "50.00",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "8.00",
+        "std": "0.00"
+      }
+    },
+    "hard": {
+      "hards": {
+        "mean": "55.56",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "55.56",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "66.67",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "9.00",
+        "std": "0.00"
+      }
+    },
+    "extra": {
+      "hards": {
+        "mean": "40.00",
+        "std": "0.00"
+      },
+      "soft": {
+        "mean": "73.33",
+        "std": "0.00"
+      },
+      "partial": {
+        "mean": "80.00",
+        "std": "0.00"
+      },
+      "examples": {
+        "mean": "15.00",
+        "std": "0.00"
+      }
+    }
+  }
+}

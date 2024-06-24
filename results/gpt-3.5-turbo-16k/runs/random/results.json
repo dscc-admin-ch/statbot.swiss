@@ -1,0 +1,151 @@
+{
+  "1": [
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 46.15
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 46.15
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 46.15
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 46.15
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 46.15
+    }
+  ],
+  "2": [
+    {
+      "hard": 36.36,
+      "soft": 41.96,
+      "npartial": 46.85
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.96,
+      "npartial": 46.85
+    },
+    {
+      "hard": 37.06,
+      "soft": 41.96,
+      "npartial": 46.85
+    },
+    {
+      "hard": 35.66,
+      "soft": 41.26,
+      "npartial": 46.15
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 46.15
+    }
+  ],
+  "3": [
+    {
+      "hard": 34.97,
+      "soft": 40.56,
+      "npartial": 45.45
+    },
+    {
+      "hard": 37.06,
+      "soft": 41.96,
+      "npartial": 46.85
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 46.15
+    },
+    {
+      "hard": 35.66,
+      "soft": 41.26,
+      "npartial": 46.15
+    },
+    {
+      "hard": 34.97,
+      "soft": 40.56,
+      "npartial": 45.45
+    }
+  ],
+  "4": [
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 44.06
+    },
+    {
+      "hard": 35.66,
+      "soft": 40.56,
+      "npartial": 42.66
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 43.36
+    },
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 43.36
+    },
+    {
+      "hard": 37.06,
+      "soft": 41.96,
+      "npartial": 44.06
+    }
+  ],
+  "5": [
+    {
+      "hard": 37.06,
+      "soft": 44.76,
+      "npartial": 51.05
+    },
+    {
+      "hard": 37.06,
+      "soft": 44.76,
+      "npartial": 51.05
+    },
+    {
+      "hard": 36.36,
+      "soft": 44.06,
+      "npartial": 49.65
+    }
+  ],
+  "6": [
+    {
+      "hard": 37.76,
+      "soft": 42.66,
+      "npartial": 45.45
+    },
+    {
+      "hard": 37.76,
+      "soft": 42.66,
+      "npartial": 45.45
+    },
+    {
+      "hard": 37.76,
+      "soft": 42.66,
+      "npartial": 45.45
+    }
+  ],
+  "8": [
+    {
+      "hard": 36.36,
+      "soft": 41.26,
+      "npartial": 44.76
+    }
+  ]
+}

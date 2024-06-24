@@ -1,0 +1,1106 @@
+db_id,question,query,generated_query,hardness,lang,process_time,input_token_length,Max_Score,Avg_Score
+criminal_offences_registered_by_police,"Which offences had over 10,000 incidents in Switzerland in 2022. Provide the criminal codes and the number of incidents.","SELECT T.offence_criminal_code,
+  SUM(T.number_criminal_offences_registered) AS offences_per_year
+FROM criminal_offences_registered_by_police AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Switzerland'
+  AND S.country = 'TRUE'
+  AND T.year = 2022
+  AND T.number_criminal_offences_registered > 10000
+  AND T.offence_criminal_code != 'Offence - total'
+GROUP BY T.year, T.offence_criminal_code
+ORDER BY offences_per_year DESC;","SELECT T.offence_criminal_code, T.number_criminal_offences_registered as number_of_incidents FROM criminal_offences_registered_by_police AS T JOIN spatial_unit AS S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name = 'Switzerland'  AND S.country = 'TRUE'  AND T.year = 2022  AND T.offence_criminal_code != 'Offence - total'  AND T.number_criminal_offences_registered > 10000;",unknown,en,16.814983231946826,3747,0,0.0
+criminal_offences_registered_by_police,What is the most committed crime in Switzerland?,"SELECT T.offence_criminal_code AS most_common_criminal_offence
+FROM criminal_offences_registered_by_police AS T
+JOIN spatial_unit AS S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Switzerland'
+  AND S.country = 'TRUE'
+  AND T.offence_criminal_code != 'Offence - total'
+  AND T.number_criminal_offences_registered IS NOT NULL
+GROUP BY T.offence_criminal_code
+ORDER BY SUM(T.number_criminal_offences_registered) DESC LIMIT 1;","SELECT T.offence_criminal_code, T.number_criminal_offences_registered FROM criminal_offences_registered_by_police AS T JOIN spatial_unit AS S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name = 'Switzerland'  AND S.country = 'TRUE'  AND T.offence_criminal_code != 'Offence - total' GROUP BY T.offence_criminal_code, T.number_criminal_offences_registered ORDER BY T.number_criminal_offences_registered DESC LIMIT 1;",unknown,en,17.490377703681588,3723,0,0.0
+criminal_offences_registered_by_police,What was the clearance rate for bribery in 2021 in Switzerland,"SELECT 100 * SUM(T.number_criminal_offences_solved) / SUM(T.number_criminal_offences_registered)
+AS clearance_rate_for_bribery
+FROM criminal_offences_registered_by_police AS T
+JOIN spatial_unit AS S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Switzerland'
+  AND S.country = 'TRUE'
+  AND T.year = 2021
+  AND T.number_criminal_offences_registered IS NOT NULL
+  AND T.offence_category = 'Bribery';",SELECT 100 * SUM(T.number_criminal_offences_solved) / SUM(T.number_criminal_offences_registered) AS clearance_rate FROM criminal_offences_registered_by_police AS T JOIN spatial_unit AS S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name = 'Switzerland' AND S.country = 'TRUE' AND T.offence_criminal_code = 'Bribery' AND T.year = 2021,unknown,en,15.139477977529168,3732,0,0.0
+number_of_plantations_in_swiss_forest,List for each year the number of forests in Kanton Uri?,"SELECT T.year, SUM(T.number_of_plantations) AS number_of_plantations_canton_uri
+FROM number_of_plantations_in_swiss_forest as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE' AND S.name_de LIKE '%Uri%'
+  AND T.type_of_owner = 'Type of owners - total'
+  AND T.wood_species = 'Species - total'
+  AND T.forest_zone != 'Switzerland'
+  AND T.number_of_plantations != 0
+GROUP BY T.year
+ORDER BY T.year DESC;","SELECT T.year as year, SUM(T.number_of_plantations) AS number_of_plantations_uri FROM number_of_plantations_in_swiss_forest as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Uri'  AND T.type_of_owner = 'Type of owners - total'  AND T.wood_species = 'Species - total'  AND T.forest_zone != 'Switzerland'  AND T.number_of_plantations != 0 GROUP BY T.year ORDER BY T.year;",unknown,en,18.13189832866192,3069,0,0.0
+number_of_plantations_in_swiss_forest,"What were proportions, in percent, of deciduous and coniferous forests in Switzerland in 2020?","SELECT
+  ROUND(100 * SUM(CASE WHEN LOWER(wood_species) LIKE '%deciduous%'
+       THEN number_of_plantations ELSE 0 END) /
+  SUM(CASE WHEN LOWER(wood_species) LIKE '%total%'
+       THEN number_of_plantations ELSE 0 END),
+  2) AS percentage_deciduous_forests,
+    ROUND(100 * SUM(CASE WHEN LOWER(wood_species) LIKE '%conifers%'
+       THEN number_of_plantations ELSE 0 END) /
+   SUM(CASE WHEN LOWER(wood_species) LIKE '%total%'
+       THEN number_of_plantations ELSE 0 END),
+  2) AS percentage_coniferous_forests
+FROM number_of_plantations_in_swiss_forest as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+  AND T.year = 2020
+  AND S.name = 'Switzerland'
+  AND T.type_of_owner = 'Type of owners - total';","SELECT  ROUND(100 * SUM(CASE WHEN LOWER(wood_species) LIKE '%deciduous%'     THEN number_of_plantations ELSE 0 END) /   SUM(CASE WHEN LOWER(wood_species) LIKE '%total%'     THEN number_of_plantations ELSE 0 END), 2) AS percentage_deciduous_forests,  ROUND(100 * SUM(CASE WHEN LOWER(wood_species) LIKE '%coniferous%'    THEN number_of_plantations ELSE 0 END) /   SUM(CASE WHEN LOWER(wood_species) LIKE '%total%'    THEN number_of_plantations ELSE 0 END), 2) AS percentage_coniferous_forests FROM number_of_plantations_in_swiss_forest as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.country = 'TRUE'  AND T.year = 2020  AND S.name = 'Switzerland'  AND T.type_of_owner = 'Type of owners - total'  AND T.forest_zone = 'Switzerland';",unknown,en,32.84274232015014,3080,0,0.0
+number_of_plantations_in_swiss_forest,By 2022: Which three forest zones had the most plantations in Switzerland? Provide the forest zones together with the number of plantations.,"SELECT T.forest_zone, SUM(T.number_of_plantations) as number_of_plantations
+FROM number_of_plantations_in_swiss_forest as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+  AND T.type_of_owner = 'Type of owners - total'
+  AND T.year = 2022
+  AND T.number_of_plantations != 0 AND number_of_plantations IS NOT NULL
+  AND T.forest_zone != 'Switzerland'
+GROUP BY T.forest_zone
+ORDER BY number_of_plantations DESC LIMIT 3;","SELECT T.forest_zone, SUM(T.number_of_plantations) AS number_of_plantations FROM number_of_plantations_in_swiss_forest AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.country = 'TRUE' AND S.name = 'Switzerland' AND T.year = 2022 AND T.type_of_owner = 'Type of owners - total' AND T.wood_species = 'Species - total' GROUP BY T.forest_zone ORDER BY number_of_plantations DESC LIMIT 3",unknown,en,17.032733799889684,3087,0,0.0
+tourism_economy_by_canton,How many FTE were allocated to tourism were there in Switzerland 2019?,"SELECT T.total_full_time_employment_of_tourism
+FROM tourism_economy_by_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+    AND S.name = 'Switzerland'
+    AND T.year = 2019;",SELECT SUM(total_full_time_employment_of_tourism) as total_fte_tourism_2019 FROM tourism_economy_by_canton WHERE year = 2019 AND spatialunit_uid IN (   spatialunit_uid   FROM spatial_unit   WHERE canton = 'TRUE' ),medium,en,10.085330292582512,3129,0,0.0
+tourism_economy_by_canton,Which canton has the most employees in the tourism sector in 2019?,"SELECT S.name AS canton
+FROM tourism_economy_by_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND T.year = 2019
+ORDER BY T.total_full_time_employment_of_tourism DESC LIMIT 1;","SELECT S.name as canton, T.total_full_time_employment_of_tourism as total_full_time_employment_of_tourism_2019 FROM tourism_economy_by_canton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE' AND T.year = 2019 ORDER BY total_full_time_employment_of_tourism_2019 DESC LIMIT 1;",unknown,en,15.403189035132527,3129,0,0.0
+tourism_economy_by_canton,What canton got the most money from tourism in 2016?,"SELECT S.name AS canton
+FROM tourism_economy_by_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND T.year = 2016
+ORDER BY T.mio_chf_gross_value_added_of_tourism DESC LIMIT 1;","SELECT S.name as canton, T.mio_chf_gross_value_added_of_tourism as mio_chf_gross_value_added_of_tourism_2016 FROM tourism_economy_by_canton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE' AND T.year = 2016 ORDER BY mio_chf_gross_value_added_of_tourism_2016 DESC LIMIT 1",unknown,en,16.371762920171022,3127,0,0.0
+employees_farmholdings_agricultural_area_livestock_per_canton,What kind of animal farms existed in Kanton Uri in 2012? Give the number of each farm type.,"SELECT beef_cattle_and_cows_farm, horse_and_other_equine_farm,
+  sheep_farm, goat_farm, pig_farms, poultry_farm, farms_with_other_animals
+FROM employees_farmholdings_agricultural_area_livestock_per_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name LIKE '%Uri%'
+    AND S.canton = 'TRUE'
+    AND T.year = 2012
+    AND T.farmholding_system = 'Farmholding system - total';","SELECT CASE     WHEN beef_cattle_and_cows_farm > 0 THEN 'Beef and cattle farm'     WHEN horse_and_other_equine_farm > 0 THEN 'Horse and other equine farm'     WHEN sheep_farm > 0 THEN 'Sheep farm'     WHEN goat_farm > 0 THEN 'Goat farm'     WHEN pig_farms > 0 THEN 'Pig farm'     WHEN poultry_farm > 0 THEN 'Poultry farm'     ELSE 'Other animal farm'   END AS farm_type,   COUNT(*) AS number_of_farms FROM employees_farmholdings_agricultural_area_livestock_per_canton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name LIKE '%Uri%'   AND S.canton = 'TRUE'   AND T.year = 2012   AND T.farmholding_system = 'Farmholding system - total' GROUP BY farm_type",hard,en,31.34018544666469,6329,0,0.0
+employees_farmholdings_agricultural_area_livestock_per_canton,How many farms were there in all of Switzerland between 2012 and 2018?,"SELECT year, farmholdings
+FROM employees_farmholdings_agricultural_area_livestock_per_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Switzerland'
+    AND S.country = 'TRUE'
+    AND year BETWEEN 2012 AND 2018
+    AND T.farmholding_system = 'Farmholding system - total';","SELECT NULL as livestock_beef_cattle_and_cows,    NULL as livestock_sheep,    NULL as livestock_goats,    NULL as livestock_pigs,    NULL as livestock_poultry,    NULL as livestock_other_animals,    year,    COUNT(DISTINCT T.farmholdings) as number_of_farms FROM employees_farmholdings_agricultural_area_livestock_per_canton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.country = 'TRUE'  AND T.year BETWEEN 2012 AND 2018  AND T.farmholding_system = 'Farmholding system - total' GROUP BY year",extra,en,23.983515555039048,6325,0,0.0
+employees_farmholdings_agricultural_area_livestock_per_canton,How was the farmland used in organic farming in 2017? Provide land usage in percentage of the farming area.,"SELECT ROUND(100 * T.arable_land_in_hectares / T.utilised_agricultural_area_in_hectares, 2) AS percentage_arable_land,
+  ROUND(100 * T.grassland_in_hectares / T.utilised_agricultural_area_in_hectares, 2) AS percentage_grassland,
+  ROUND(100 * T.permanent_crops_in_hectares / T.utilised_agricultural_area_in_hectares, 2) AS percentage_permanent_crops,
+  ROUND(100 * T.other_utilised_agricultural_area_in_hectares / T.utilised_agricultural_area_in_hectares, 2) AS precentage_other_usage
+FROM employees_farmholdings_agricultural_area_livestock_per_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+    AND year = 2015
+    AND T.farmholding_system = 'Organic farming';","SELECT SUM(CASE         WHEN farmholding_system = 'Organic farming' THEN utilised_agricultural_area_in_hectares         ELSE 0       END) AS organic_farming_area   FROM     employees_farmholdings_agricultural_area_livestock_per_canton   WHERE     year = 2017 )   ROUND(100.0 * utilised_agricultural_area_in_hectares / organic_farming_area, 2) AS utilised_agricultural_area_percentage FROM   employees_farmholdings_agricultural_area_livestock_per_canton, organic_farming_area WHERE   year = 2017   AND farmholding_system = 'Organic farming'   AND utilised_agricultural_area_in_hectares > 0",unknown,en,27.440868463367224,6330,0,0.0
+employees_farmholdings_agricultural_area_livestock_per_canton,How was the split between men and women in farm employment in canton Uri in 2015?,"SELECT ROUND(100 * employees_women / employees_total, 2) AS percentage_of_female_employees,
+  ROUND(100 * employees_men / employees_total, 2) AS percentage_of_male_employees
+FROM employees_farmholdings_agricultural_area_livestock_per_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+    AND year = 2015
+    AND T.farmholding_system = 'Farmholding system - total';","SELECT ROUND(100 * employees_men / employees_total, 2) AS percentage_of_men_employees,  ROUND(100 * employees_women / employees_total, 2) AS percentage_of_women_employees FROM employees_farmholdings_agricultural_area_livestock_per_canton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name = 'Canton Uri'   AND S.canton = 'TRUE'   AND T.year = 2015   AND T.farmholding_system = 'Farmholding system - total'",unknown,en,20.044912200421095,6326,0,0.0
+employees_farmholdings_agricultural_area_livestock_per_canton,What was the total agricultural surface area in the canton of Geneva in 2000?,"SELECT utilised_agricultural_area_in_hectares as utilised_agricultural_area_in_hectares_canton_geneva
+FROM employees_farmholdings_agricultural_area_livestock_per_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Canton Geneva'
+    AND S.canton = 'TRUE'
+    AND year = 2000
+    AND T.farmholding_system = 'Farmholding system - total';",SELECT utilised_agricultural_area_in_hectares FROM employees_farmholdings_agricultural_area_livestock_per_canton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name = 'Canton de Genève'   AND S.canton = 'TRUE'   AND T.year = 2000   AND T.farmholding_system = 'Farmholding system - total',unknown,en,15.726995799690485,6324,0,0.0
+demographic_balance_by_canton,What was the population change due to natural factors among the residents of Canton Vaud between 2015 and 2020?,"SELECT year, births - deaths
+FROM demographic_balance_by_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Vaud%'
+    AND T.year >= 2015
+    AND T.year >= 2020
+    AND T.citizenship_category = 'Citizenship (category) - total';","SELECT total_population   FROM demographic_balance_by_canton   WHERE year = 2015 AND spatialunit_uid IN (     spatialunit_uid     FROM spatial_unit     WHERE canton = 'TRUE' AND name = 'Vaud'   ) ), total_population_2020 AS (   total_population   FROM demographic_balance_by_canton   WHERE year = 2020 AND spatialunit_uid IN (     spatialunit_uid     FROM spatial_unit     WHERE canton = 'TRUE' AND name = 'Vaud'   ) ), births_2015_2020 AS (   spatialunit_uid, SUM(births) AS total_births   FROM demographic_balance_by_canton   WHERE year BETWEEN 2015 AND 2020 AND spatialunit_uid IN (     spatialunit_uid     FROM spatial_unit     WHERE canton = 'TRUE' AND name = 'Vaud'   )   GROUP BY spatialunit_uid ), deaths_2015_2020 AS (   spatialunit_uid, SUM(deaths) AS total_deaths   FROM demographic_balance_by_canton   WHERE year BETWEEN 2015 AND 2020 AND spatialunit_uid IN (     spatialunit_uid     FROM spatial_unit     WHERE canton = 'TRUE' AND name = 'Vaud'   )   GROUP BY spatialunit_uid ) ( total_population FROM total_population_2015) + ( SUM(total_births) FROM births_2015_2020) - ( SUM(total_deaths) FROM deaths_2015_2020) - ( total_population FROM total_population_2020) AS population",hard,en,50.959024081006646,3165,0,0.0
+demographic_balance_by_canton,Which canton has the highest number of residents who have moved from other cantons in 2016?,"SELECT S.name, T.in_migration_from_another_canton
+FROM demographic_balance_by_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND T.year = 2016
+    AND T.citizenship_category = 'Citizenship (category) - total'
+ORDER BY T.in_migration_from_another_canton DESC
+LIMIT 1;","SELECT S.name, in_migration_from_another_canton FROM demographic_balance_by_canton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND T.year = 2016   AND T.citizenship_category = 'Citizenship (category) - total' ORDER BY in_migration_from_another_canton DESC LIMIT 1;",extra,en,14.610497822985053,3158,0,0.0
+demographic_balance_by_canton,How many residents were in Switzerland in 2018?,"SELECT total_population as total_population_of_switzerland_in_2018
+FROM demographic_balance_by_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Switzerland'
+    AND S.country = 'TRUE'
+    AND T.year = 2018
+    AND T.citizenship_category = 'Citizenship (category) - total';",SELECT SUM(total_population) as total_residents FROM demographic_balance_by_canton WHERE year = 2018 AND citizenship_category = 'Citizenship (category) - total';,unknown,en,7.561049511656165,3148,0,0.0
+demographic_balance_by_canton,What was the net migration of Switzerland from 2012 to 2022?,"SELECT year, net_migration as net_migration_of_switzerland
+FROM demographic_balance_by_canton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Switzerland'
+    AND S.country = 'TRUE'
+    AND T.year >= 2012
+    AND T.year <= 2022
+    AND T.citizenship_category = 'Citizenship (category) - total';",SELECT SUM(net_migration) as net_migration FROM demographic_balance_by_canton WHERE citizenship_category = 'Citizenship (category) - total'   AND spatialunit_uid = 'CH'   AND year BETWEEN 2012 AND 2022,unknown,en,9.699644897133112,3155,0,0.0
+greenhouse_gas_emissions_through_consumption,What greenhouse gas footprint had Switzerland in 2000 through consumption?,"SELECT T.emissions_in_million_tons_co2_equivalent
+FROM greenhouse_gas_emissions_through_consumption as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name = 'Switzerland'
+  AND S.country = 'TRUE'
+  AND T.year = 2000;",SELECT emissions_in_million_tons_co2_equivalent FROM greenhouse_gas_emissions_through_consumption WHERE year = 2000,medium,en,5.403462832793593,2186,0,0.0
+greenhouse_gas_emissions_through_consumption,In which years did the greenhouse footprint increase and by how much? Order by years and start from the present,"WITH EmissionsChange AS (
+    SELECT
+        T1.year AS current_year,
+        T1.emissions_in_million_tons_co2_equivalent AS emissions_current_year,
+        (T1.year - 1) AS previous_year,
+        T2.emissions_in_million_tons_co2_equivalent AS emissions_previous_year,
+        T1.emissions_in_million_tons_co2_equivalent - T2.emissions_in_million_tons_co2_equivalent
+          AS increase_from_previous_year
+    FROM greenhouse_gas_emissions_through_consumption AS T1
+    JOIN greenhouse_gas_emissions_through_consumption AS T2 ON T1.year = T2.year + 1
+    WHERE T1.year > 2000
+)
+SELECT current_year, increase_from_previous_year
+FROM EmissionsChange WHERE increase_from_previous_year > 0
+ORDER BY current_year DESC;","SELECT T1.year AS current_year,     T1.emissions_in_million_tons_co2_equivalent AS emissions_current_year,     (T1.year - 1) AS previous_year,     T2.emissions_in_million_tons_co2_equivalent AS emissions_previous_year,     T1.emissions_in_million_tons_co2_equivalent - T2.emissions_in_million_tons_co2_equivalent      AS increase_from_previous_year   FROM greenhouse_gas_emissions_through_consumption AS T1   JOIN greenhouse_gas_emissions_through_consumption AS T2 ON T1.year = T2.year + 1 ) current_year, increase_from_previous_year FROM EmissionsChange WHERE increase_from_previous_year > 0 ORDER BY current_year DESC",unknown,en,24.265210054814816,2192,0,0.0
+stock_vehicles,What types of fuel are there?,SELECT DISTINCT fuel_type FROM stock_vehicles;,SELECT DISTINCT fuel_type FROM stock_vehicles WHERE fuel_type != 'total';,easy,en,4.012007296085358,2783,0,0.0
+stock_vehicles,What was the proportion of electric vehicles in Geneva in 2010?,"SELECT
+    SUM(CASE WHEN sv.fuel_type ILIKE '%electric%' THEN sv.amount ELSE 0 END) AS electric_vehicles,
+    SUM(sv.amount) AS total_vehicles,
+    (
+        SUM(CASE WHEN sv.fuel_type ILIKE '%electric%' THEN sv.amount ELSE 0 END) * 100.0 / NULLIF(SUM(sv.amount), 0)
+    ) AS proportion_electric_vehicles
+FROM spatial_unit AS su
+INNER JOIN stock_vehicles AS sv
+ON su.spatialunit_uid = sv.spatialunit_uid
+WHERE su.name ILIKE '%geneva%'
+    AND sv.year = 2010;","SELECT   SUM(CASE WHEN sv.fuel_type ILIKE '%electric%' THEN sv.amount ELSE 0 END) * 100.0 / NULLIF(SUM(sv.amount), 0) AS electric_proportion FROM stock_vehicles AS sv INNER JOIN spatial_unit AS su ON sv.spatialunit_uid = su.spatialunit_uid WHERE   su.name ILIKE 'Geneva'   AND su.municipal = 'True'   AND sv.year = 2010;",unknown,en,15.53524642623961,2793,0,0.0
+stock_vehicles,What was the city with the most cars in 2015?,"SELECT
+    su.name AS city,
+    SUM(sv.amount) AS total_cars
+FROM spatial_unit AS su
+INNER JOIN stock_vehicles AS sv
+ON su.spatialunit_uid = sv.spatialunit_uid
+WHERE sv.year = 2015
+    AND su.municipal = 'True'
+    AND sv.fuel_type = 'total'
+GROUP BY
+    su.name
+ORDER BY total_cars DESC
+LIMIT 1;","SELECT   su.name AS city,   SUM(sv.amount) AS total_cars FROM spatial_unit AS su INNER JOIN stock_vehicles AS sv ON su.spatialunit_uid = sv.spatialunit_uid WHERE   su.municipal = 'True'   AND su.name != 'Basel' -- exclude Basel to avoid double-counting   AND sv.year = 2015 GROUP BY   su.name ORDER BY   total_cars DESC LIMIT 1;",unknown,en,14.995521111413836,2791,0,0.0
+stock_vehicles,What are fuel types starting with d?,"SELECT DISTINCT fuel_type
+FROM stock_vehicles WHERE fuel_type ILIKE 'd%';",SELECT DISTINCT fuel_type FROM stock_vehicles WHERE fuel_type LIKE 'd%',unknown,en,4.10002913326025,2784,0,0.0
+stock_vehicles,What are the top 10 cities with the highest proportion of diesel cars?,"SELECT
+    su.name AS city,
+    (SUM(CASE WHEN sv.fuel_type ILIKE '%diesel%' THEN sv.amount ELSE 0 END) * 100.0 / SUM(CASE WHEN sv.fuel_type = 'total' THEN sv.amount ELSE 0 END) ) AS proportion_diesel
+FROM spatial_unit AS su
+    INNER JOIN stock_vehicles AS sv ON su.spatialunit_uid = sv.spatialunit_uid
+WHERE
+    su.name IS NOT NULL
+GROUP BY
+    su.name
+ORDER BY
+    proportion_diesel DESC
+LIMIT 10;","SELECT   su.name AS city,   (SUM(sv.amount) FILTER (WHERE sv.fuel_type ILIKE 'Diesel%') * 100.0 / NULLIF(SUM(sv.amount), 0)) AS diesel_proportion FROM spatial_unit AS su   INNER JOIN stock_vehicles AS sv ON su.spatialunit_uid = sv.spatialunit_uid WHERE   su.municipal = 'True'   AND sv.fuel_type ILIKE 'Diesel%'   AND sv.year BETWEEN 2013 AND 2018 GROUP BY   su.name ORDER BY   diesel_proportion DESC LIMIT 10;",unknown,en,20.424783632159233,2793,0,0.0
+stock_vehicles,What year saw the biggest year-on-year increase in electric cars in the city of Basel?,"SELECT
+    year,
+    year_on_year_increase
+FROM (
+    SELECT
+        sv.year,
+        (sv.amount - lag(sv.amount) OVER (ORDER BY sv.year)) AS year_on_year_increase
+    FROM spatial_unit AS su
+        INNER JOIN stock_vehicles AS sv ON su.spatialunit_uid = sv.spatialunit_uid
+    WHERE
+        su.name = 'Basel' and su.municipal = 'True'
+        AND sv.fuel_type ILIKE '%electric%'
+) AS subquery
+WHERE
+    year_on_year_increase IS NOT NULL
+ORDER BY
+    year_on_year_increase DESC
+LIMIT 1;","SELECT year, amount FROM spatial_unit su JOIN stock_vehicles sv ON su.spatialunit_uid = sv.spatialunit_uid WHERE su.name ILIKE 'Basel' AND su.municipal = 'True' AND sv.fuel_type ILIKE '%electric%' )",unknown,en,17.309336038306355,2797,0,0.0
+baby_names_favorite_firstname,How many favorite babynames are registered in year 2011?,"SELECT DISTINCT COUNT(bnff.first_name)
+FROM baby_names_favorite_firstname as bnff
+WHERE bnff.year = 2011;",SELECT COUNT(bnff.first_name) FROM baby_names_favorite_firstname as bnff WHERE bnff.year = 2011,easy,en,5.372008420526981,2166,0,0.0
+baby_names_favorite_firstname,Show me all amount of baby names in all municipalities.,"SELECT bnff.first_name, bnff.amount
+FROM baby_names_favorite_firstname as bnff
+JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid
+WHERE su.municipal = 'TRUE';","SELECT bnff.first_name, su.name, bnff.amount FROM baby_names_favorite_firstname as bnff JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid ORDER BY su.name, bnff.amount DESC;",medium,en,9.272889444604516,2162,0,0.0
+baby_names_favorite_firstname,Which canton has the most borned boys called 'Oscar' in 2016?,"SELECT su.name, bnff.amount
+FROM baby_names_favorite_firstname as bnff
+JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid
+WHERE year = 2016 AND gender = 'boy' AND bnff.first_name = 'Oscar' AND su.canton = 'TRUE'
+ORDER BY bnff.amount DESC LIMIT 1;","SELECT su.name, bnff.amount FROM baby_names_favorite_firstname as bnff JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid WHERE bnff.first_name = 'Oscar' AND bnff.gender = 'boy' AND bnff.year = 2016 AND su.canton = 'TRUE' ORDER BY bnff.amount DESC LIMIT 1;",extra,en,13.015649488195777,2171,0,0.0
+baby_names_favorite_firstname,Show me all top-1 ranked girl names for in each canton in year 2016. Return me the amount and year as well.,"SELECT bnff.first_name, su.name, bnff.amount, bnff.year
+FROM baby_names_favorite_firstname as bnff
+JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid
+WHERE su.canton = 'TRUE' and bnff.gender = 'girl' and bnff.year = 2016 and bnff.rank = 1;","SELECT bnff.first_name, bnff.gender, bnff.amount, bnff.rank, su.name, bnff.year FROM baby_names_favorite_firstname as bnff JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid WHERE bnff.rank = 1 AND bnff.gender = 'girl' AND bnff.year = 2016 AND su.canton = 'TRUE' ORDER BY su.name;",extra,en,14.615501003339887,2181,0,0.0
+baby_names_favorite_firstname,How many girls new borned with name initial L from canton Zurich in 2016?,"SELECT sum(amount)
+FROM baby_names_favorite_firstname as bnff
+JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid
+WHERE year = 2016 AND gender = 'girl' AND su.canton = ''True''
+AND su.name ilike '%zurich%' AND bnff.first_name ilike 'l%';",SELECT amount FROM baby_names_favorite_firstname as bnff JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid WHERE bnff.first_name ILIKE 'L%' AND bnff.year = 2016 AND bnff.gender = 'girl' AND su.name ILIKE '%Zurich%' AND su.canton = 'TRUE',unknown,en,11.649039613083005,2172,0,0.0
+baby_names_favorite_firstname,Show me the top one ranking girl names from year 2010 in Switzerland.,"SELECT bnff.first_name, bnff.year
+FROM baby_names_favorite_firstname as bnff
+JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid
+WHERE su.country = 'TRUE' and su.name ilike '%Switzerland%' and bnff.gender = 'girl'
+and bnff.year >= 2010 and bnff.rank = 1
+ORDER BY bnff.year;","SELECT first_name, gender, amount, rank FROM baby_names_favorite_firstname as bnff JOIN spatial_unit as su ON bnff.spatialunit_uid = su.spatialunit_uid WHERE year = 2010 and gender = 'girl' AND su.country = 'TRUE' AND su.name = 'Switzerland' ORDER BY bnff.rank LIMIT 1",unknown,en,11.031875682994723,2168,0,0.0
+divorces_duration_of_marriage_age_classes,How many divorces were there in canton zurich in 2020?,"SELECT S.name, T.year, sum(T.amount) as total_divorces
+FROM divorces_duration_of_marriage_age_classes as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name ilike '%Zurich%'
+AND T.year = 2020
+AND S.canton = 'True'
+AND T.duration_of_marriage = 'Duration of marriage - total'
+AND T.age_class_husband = 'Age class of husband - total'
+AND T.age_class_wife = 'Age class of wife - total'
+GROUP BY S.name, T.year;",SELECT SUM(T.amount) AS total_divorces FROM spatial_unit AS S INNER JOIN divorces_duration_of_marriage_age_classes AS T ON S.spatialunit_uid = T.spatialunit_uid WHERE T.year = 2020 AND S.name ilike '%Zurich%' AND S.canton = 'True' AND T.duration_of_marriage = 'Duration of marriage - total' AND T.age_class_husband = 'Age class of husband - total' AND T.age_class_wife = 'Age class of wife - total';,unknown,en,17.373378107324243,3118,0,0.0
+divorces_duration_of_marriage_age_classes,Did any people divorce at an age of 70 or above in Switzerland in 2000?,"SELECT S.name, T.age_class_husband, SUM(T.amount) AS total_divorces
+FROM spatial_unit AS S
+INNER JOIN divorces_duration_of_marriage_age_classes AS T
+ON S.spatialunit_uid = T.spatialunit_uid
+WHERE T.year = 2000
+AND T.duration_of_marriage = 'Duration of marriage - total'
+AND (T.age_class_husband = '90 years or older' OR T.age_class_husband = '70-79 years')
+AND T.age_class_wife = 'Age class of wife - total'
+AND S.country
+GROUP BY S.name, T.age_class_husband;","SELECT S.name, T.age_class_husband, T.age_class_wife, SUM(T.amount) AS total_divorces FROM spatial_unit AS S INNER JOIN divorces_duration_of_marriage_age_classes AS T ON S.spatialunit_uid = T.spatialunit_uid WHERE T.year = 2000 AND T.duration_of_marriage = 'Duration of marriage - total' AND ((T.age_class_husband = '70 years or older' AND T.age_class_wife = 'Age class of wife - total') OR (T.age_class_wife = '70 years or older' AND T.age_class_husband = 'Age class of husband - total')) AND S.country GROUP BY S.name, T.age_class_husband, T.age_class_wife;",unknown,en,23.90321391262114,3122,0,0.0
+divorces_duration_of_marriage_age_classes,Which year between 1990 and 2000 had the least divorces in Stadt Basel?,"SELECT S.name, T.year, SUM(T.amount) AS total_divorces
+FROM spatial_unit AS S
+INNER JOIN divorces_duration_of_marriage_age_classes AS T
+ON S.spatialunit_uid = T.spatialunit_uid
+WHERE T.year >= 1990
+AND T.duration_of_marriage = 'Duration of marriage - total'
+AND T.age_class_husband = 'Age class of husband - total'
+AND T.age_class_wife = 'Age class of wife - total'
+AND S.country
+GROUP BY S.name, T.year
+ORDER BY T.year;","SELECT T.year, SUM(T.amount) AS total_divorces FROM spatial_unit AS S INNER JOIN divorces_duration_of_marriage_age_classes AS T ON S.spatialunit_uid = T.spatialunit_uid WHERE T.year BETWEEN 1990 AND 2000 AND T.duration_of_marriage = 'Duration of marriage - total' AND T.age_class_husband = 'Age class of husband - total' AND T.age_class_wife = 'Age class of wife - total' AND S.name ILIKE '%Basel%' AND S.country GROUP BY T.year ORDER BY total_divorces ASC LIMIT 1;",unknown,en,20.24982968531549,3124,0,0.0
+divorces_duration_of_marriage_age_classes,How many men divorced at an age between 60 and 69 in canton zurich in 2020?,"SELECT S.name, T.year, T.age_class_husband, sum(T.amount) AS total_divorces
+FROM divorces_duration_of_marriage_age_classes as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name ilike '%Zurich%'
+AND T.year = 2020
+AND S.canton = 'True'
+AND T.duration_of_marriage = 'Duration of marriage - total'
+AND T.age_class_husband = '60-69 years'
+AND T.age_class_wife = 'Age class of wife - total'
+GROUP BY S.name, T.year, T.age_class_husband;","SELECT S.name, T.year, T.age_class_husband, sum(T.amount) as total_divorces FROM divorces_duration_of_marriage_age_classes as T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name ilike '%Zurich%' AND T.year = 2020 AND S.canton = 'True' AND T.duration_of_marriage = 'Duration of marriage - total' AND T.age_class_husband = '60-69 years' AND T.age_class_wife = 'Age class of wife - total' GROUP BY S.name, T.year, T.age_class_husband;",unknown,en,20.407465383410454,3128,0,0.0
+divorces_duration_of_marriage_age_classes,From 2000 to 2022 which year saw the most divorces in Switzerland?,"SELECT T.year, SUM(T.amount) AS total_divorces
+FROM spatial_unit AS S
+INNER JOIN divorces_duration_of_marriage_age_classes AS T
+ON S.spatialunit_uid = T.spatialunit_uid
+WHERE T.year >= 2000
+AND T.year <= 2022
+AND T.duration_of_marriage = 'Duration of marriage - total'
+AND T.age_class_wife = 'Age class of wife - total'
+AND T.age_class_husband = 'Age class of husband - total'
+AND S.country
+GROUP BY T.year
+ORDER BY total_divorces DESC
+LIMIT 1;","SELECT T.year, SUM(T.amount) AS total_divorces FROM spatial_unit AS S INNER JOIN divorces_duration_of_marriage_age_classes AS T ON S.spatialunit_uid = T.spatialunit_uid WHERE T.year BETWEEN 2000 AND 2022 AND T.duration_of_marriage = 'Duration of marriage - total' AND T.age_class_husband = 'Age class of husband - total' AND T.age_class_wife = 'Age class of wife - total' AND S.country GROUP BY T.year ORDER BY total_divorces DESC LIMIT 1;",unknown,en,18.878178948536515,3122,0,0.0
+divorces_duration_of_marriage_age_classes,How many marriages in Switzerland got divorced after less then 5 years in 2000?,"SELECT sum(amount) AS total_divorces
+FROM divorces_duration_of_marriage_age_classes as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = s.spatialunit_uid
+WHERE S.country
+AND T.year = '2000'
+AND T.duration_of_marriage = '0-4 years'
+AND T.age_class_husband = 'Age class of husband - total'
+AND T.age_class_wife = 'Age class of wife - total';","SELECT S.name, T.year, T.duration_of_marriage, SUM(T.amount) AS total_divorces FROM spatial_unit AS S INNER JOIN divorces_duration_of_marriage_age_classes AS T ON S.spatialunit_uid = T.spatialunit_uid WHERE T.year = 2000 AND T.duration_of_marriage = 'Less than 5 years' AND T.age_class_husband = 'Age class of husband - total' AND T.age_class_wife = 'Age class of wife - total' AND S.country GROUP BY S.name, T.year, T.duration_of_marriage ORDER BY total_divorces DESC;",unknown,en,20.46006765216589,3122,0,0.0
+divorces_duration_of_marriage_citizenship_categories,What is the total number of divorces for Swiss couples where the duration of the marriage was 20 years or more in 1994?,"SELECT SUM(amount)
+FROM divorces_duration_of_marriage_citizenship_categories WHERE year = 1994
+  AND duration_of_marriage = '20 years or more'
+  AND citizenship_category_husband = 'Switzerland'
+  AND citizenship_category_wife = 'Switzerland';",SELECT SUM(amount) as total_divorces FROM divorces_duration_of_marriage_citizenship_categories WHERE year = 1994 AND spatialunit_uid = '0_CH' AND duration_of_marriage = '20 years or more' AND citizenship_category_husband = 'Switzerland' AND citizenship_category_wife = 'Switzerland',medium,en,10.736503330990672,3503,0,0.0
+divorces_duration_of_marriage_citizenship_categories,What are the top 5 cantons with the highest number of divorces in 1994 for Swiss couples?,"SELECT su.name, SUM(div.amount) as total
+FROM divorces_duration_of_marriage_citizenship_categories AS div
+JOIN spatial_unit AS su on div.spatialunit_uid = su.spatialunit_uid
+WHERE div.year = 1994
+  AND div.duration_of_marriage = 'Duration of marriage - total'
+  AND div.citizenship_category_husband = 'Switzerland'
+  AND div.citizenship_category_wife = 'Switzerland'
+  AND su.name LIKE '%Canton%'
+GROUP BY su.name
+ORDER BY total DESC
+LIMIT 5;","SELECT su.spatialunit_uid, SUM(div.amount) as total_divorces FROM divorces_duration_of_marriage_citizenship_categories div JOIN spatial_unit su on div.spatialunit_uid = su.spatialunit_uid WHERE div.year = 1994  AND su.spatialunit_uid IN ('01_A.ADM1', '02_A.ADM1', '03_A.ADM1', '04_A.ADM1', '05_A.ADM1', '06_A.ADM1', '07_A.ADM1', '08_A.ADM1', '09_A.ADM1', '10_A.ADM1', '11_A.ADM1', '12_A.ADM1', '13_A.ADM1', '14_A.ADM1', '15_A.ADM1', '16_A.ADM1', '17_A.ADM1', '18_A.ADM1', '19_A.ADM1', '20_A.ADM1', '21_A.ADM1', '22_A.ADM1', '23_A.ADM1', '24_A.ADM1', '25_A.ADM1', '26_A.ADM1')  AND div.duration_of_marriage = 'Duration of marriage - total'  AND div.citizenship_category_husband = 'Switzerland'  AND div.citizenship_category_wife = 'Switzerland' GROUP BY su.spatialunit_uid ORDER BY total_divorces DESC LIMIT 5;",unknown,en,45.75715469196439,3497,0,0.0
+divorces_duration_of_marriage_citizenship_categories,In which year between 1990 and 2000 did the Canton of Zurich have the highest number of divorces between Swiss couples?,"SELECT year, SUM(amount) as total
+FROM divorces_duration_of_marriage_citizenship_categories join spatial_unit su on divorces_duration_of_marriage_citizenship_categories.spatialunit_uid = su.spatialunit_uid
+WHERE year BETWEEN 2000 AND 2010
+  AND su.spatialunit_uid = '1_A.ADM1'
+  AND duration_of_marriage = 'Duration of marriage - total'
+  AND citizenship_category_husband = 'Switzerland'
+  AND citizenship_category_wife = 'Switzerland'
+GROUP BY year
+ORDER BY total DESC
+LIMIT 1;","SELECT year, SUM(amount) as total_divorces FROM divorces_duration_of_marriage_citizenship_categories JOIN spatial_unit su on divorces_duration_of_marriage_citizenship_categories.spatialunit_uid = su.spatialunit_uid WHERE year BETWEEN 1990 AND 2000 AND su.spatialunit_uid = '1_A.ADM1' AND duration_of_marriage = 'Duration of marriage - total' AND citizenship_category_husband = 'Switzerland' AND citizenship_category_wife = 'Switzerland' GROUP BY year ORDER BY total_divorces DESC LIMIT 1",unknown,en,18.685408232733607,3505,0,0.0
+divorces_duration_of_marriage_citizenship_categories,"In 1995, which municipality had the lowest number of divorces between Swiss couples who were married for 10-14 years?","SELECT su.name, SUM(amount) AS total_divorces
+FROM divorces_duration_of_marriage_citizenship_categories AS d
+JOIN spatial_unit AS su ON d.spatialunit_uid = su.spatialunit_uid
+WHERE duration_of_marriage = '10-14 years'
+  AND year = 1995
+  AND su.spatialunit_uid LIKE '%_A.ADM3'
+  AND citizenship_category_husband = 'Switzerland'
+  AND citizenship_category_wife = 'Switzerland'
+GROUP BY su.name
+ORDER BY total_divorces ASC
+LIMIT 1;","SELECT su.name, div.amount AS divorces FROM divorces_duration_of_marriage_citizenship_categories div JOIN spatial_unit su ON div.spatialunit_uid = su.spatialunit_uid WHERE div.year = 1995 AND su.spatialunit_uid != '0_CH'  AND div.duration_of_marriage = '10-14 years'  AND citizenship_category_husband = 'Switzerland'  AND citizenship_category_wife = 'Switzerland' ORDER BY divorces ASC LIMIT 1;",unknown,en,16.988312551751733,3504,0,0.0
+divorces_duration_of_marriage_citizenship_categories,How has the number of divorces for Swiss couples changed from 1990 to 2000?,"SELECT year, SUM(amount) as total
+FROM divorces_duration_of_marriage_citizenship_categories WHERE year BETWEEN 1990 AND 2000
+  AND duration_of_marriage = 'Duration of marriage - total'
+  AND citizenship_category_husband = 'Switzerland'
+  AND citizenship_category_wife = 'Switzerland'
+GROUP BY year
+ORDER BY year;","SELECT year, SUM(amount) as total_divorces FROM divorces_duration_of_marriage_citizenship_categories JOIN spatial_unit su on divorces_duration_of_marriage_citizenship_categories.spatialunit_uid = su.spatialunit_uid WHERE su.spatialunit_uid = '0_CH' AND duration_of_marriage = 'Duration of marriage - total' AND citizenship_category_husband = 'Switzerland' AND citizenship_category_wife = 'Switzerland' AND year BETWEEN 1990 AND 2000 GROUP BY year ORDER BY year",unknown,en,17.390250343829393,3496,0,0.0
+divorces_duration_of_marriage_citizenship_categories,Which municipality had the highest number of divorces in 1995 between Swiss couples?,"SELECT su.name, d.year, SUM(d.amount) as total_divorces
+FROM divorces_duration_of_marriage_citizenship_categories AS d
+JOIN spatial_unit AS su ON d.spatialunit_uid = su.spatialunit_uid
+WHERE d.year = 1995
+  AND su.spatialunit_uid LIKE '%_A.ADM3'
+  AND d.duration_of_marriage = 'Duration of marriage - total'
+  AND d.citizenship_category_husband = 'Switzerland'
+  AND d.citizenship_category_wife = 'Switzerland'
+GROUP BY su.name, d.year
+ORDER BY total_divorces DESC
+LIMIT 1;","SELECT su.name, sum(div.amount) as total_divorces FROM divorces_duration_of_marriage_citizenship_categories div JOIN spatial_unit su on div.spatialunit_uid = su.spatialunit_uid WHERE div.year = 1995  AND su.spatialunit_ontology = 'A.MUN'  AND div.duration_of_marriage = 'Duration of marriage - total'  AND div.citizenship_category_husband = 'Switzerland'  AND div.citizenship_category_wife = 'Switzerland' GROUP BY su.name ORDER BY total_divorces DESC LIMIT 1;",unknown,en,19.494847366586328,3492,0,0.0
+marriage_citizenship,"Give me the average number of marriages at the canton level in 2001, where both the husband and wife are citizens of Swiss?","SELECT  AVG(T1.amount)  FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.canton = 'True' AND T1.year = 2001  AND T1.citizenship_category_husband = 'Switzerland' AND  T1.citizenship_category_wife = 'Switzerland';",SELECT AVG(T1.amount) FROM marriage_citizenship AS T1 JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.canton = 'True' AND T1.year = 2001 AND T1.citizenship_category_husband = 'Switzerland' AND T1.citizenship_category_wife = 'Switzerland',medium,en,12.154549991711974,3103,0,0.0
+marriage_citizenship,"Give me the minimum , maximum and average number of marriages at the municipal level in 2011, where both the husband and wife are citizens of foreign countries?","SELECT  MIN(T1.amount),Max(T1.amount),AVG(T1.amount)  FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.municipal = 'True' AND T1.year = 2011  AND T1.citizenship_category_husband = 'Foreign country' AND  T1.citizenship_category_wife = 'Foreign country';","SELECT  T2.name, MIN(T1.amount), MAX(T1.amount), AVG(T1.amount) FROM marriage_citizenship as T1 JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.municipal = 'True' AND T1.year = 2011 AND T1.citizenship_category_husband = 'Foreign country' AND T1.citizenship_category_wife = 'Foreign country' GROUP BY T2.name;",hard,en,15.690864875912666,3107,0,0.0
+marriage_citizenship,"In 2006, what were the top 10 cantons with the highest number of marriages where the grooms were Swiss nationals?","SELECT  T2.name, T2.spatialunit_ontology,T1.year, T1.amount   FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.canton = 'True' AND T1.year = 2012  AND T1.citizenship_category_husband = 'Switzerland' AND  T1.citizenship_category_wife = 'Citizenship of wife - total'
+ORDER BY T1.amount DESC
+LIMIT 10;","SELECT T2.name, T1.year, T1.amount FROM marriage_citizenship as T1 JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.canton = 'True' AND T1.year = 2006 AND T1.citizenship_category_husband = 'Switzerland' GROUP BY T2.name, T1.year ORDER BY T1.amount DESC LIMIT 10;",extra,en,14.598880305886269,3103,0,0.0
+marriage_citizenship,Which canton has the highest number of marriages between Swiss women and Swiss men on 2018?,"SELECT  T2.name,T1.citizenship_category_wife,T1.citizenship_category_husband,T1.year, T1.amount FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.municipal = 'True' and T1.year = 2018 and T1.citizenship_category_husband = 'Switzerland' and T1.citizenship_category_wife = 'Switzerland'
+ORDER BY  T1.amount DESC
+LIMIT 1;","SELECT T2.name, T1.amount FROM marriage_citizenship as T1 JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.canton = 'True' AND T1.year = 2018 AND T1.citizenship_category_husband = 'Switzerland' AND T1.citizenship_category_wife = 'Switzerland' ORDER BY T1.amount DESC LIMIT 1;",extra,en,14.328351041302085,3094,0,0.0
+marriage_citizenship,What are the top five municipalities with the highest number of marriages between Swiss men and foreign women in the year 2018?,"SELECT T2.name, T1.citizenship_category_husband , T1.citizenship_category_wife, T1.amount FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE  T2.municipal = 'True' AND T1.year = 2018 AND T1.citizenship_category_husband = 'Foreign country' and T1.citizenship_category_wife = 'Switzerland'
+ORDER BY T1.amount DESC
+LIMIT 5;","SELECT  T2.name, T1.citizenship_category_wife, T1.citizenship_category_husband, T1.year, T1.amount FROM marriage_citizenship as T1 JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.municipal = 'True' and T1.year = 2018 and T1.citizenship_category_husband = 'Switzerland' and T1.citizenship_category_wife = 'Foreign country' ORDER BY T1.amount DESC LIMIT 5;",extra,en,17.974937858060002,3100,0,0.0
+marriage_citizenship,"In 2012, how many marriages took place in the District of Affoltern, categorized by the citizenships of the wives and husbands involved?","SELECT T2.name,T1.citizenship_category_husband ,T1.citizenship_category_wife , T1.amount FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.district = 'True' AND T1.year = 2010  AND T2.name ilike '%Affoltern%' AND T1.citizenship_category_wife != 'Citizenship of wife - total' and T1.citizenship_category_husband != 'Citizenship of husband - total';","SELECT  T2.name, T1.citizenship_category_husband , T1.citizenship_category_wife, T1.amount FROM marriage_citizenship as T1 JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.name ilike '%Affoltern%' AND T1.year = 2012;",unknown,en,12.422824872657657,3107,0,0.0
+marriage_citizenship,How many marriages occurred in Reiden in 1999 with a wife who held Swiss citizenship?,"SELECT  T1.citizenship_category_wife, T2.name,T1.year, T1.amount FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.name ilike  '%Reiden%' and T1.year = 1999 and T1.citizenship_category_wife = 'Switzerland' and T1.citizenship_category_husband = 'Citizenship of husband - total';","SELECT  T2.name,T1.citizenship_category_wife,T1.citizenship_category_husband,T1.year, T1.amount FROM marriage_citizenship as T1 JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.name ilike '%Reiden%' and T1.year = 1999 and T1.citizenship_category_wife = 'Switzerland' and T1.citizenship_category_husband != 'Switzerland';",unknown,en,16.49287630803883,3094,0,0.0
+marriage_citizenship,In which year did the Canton of Bern have the highest number of marriages between Swiss citizens and foreigners?,"SELECT UN.year, UN.citizenship_category_husband, UN.citizenship_category_wife, UN.amount FROM
+(SELECT T2.name, T1.year, T1.citizenship_category_husband , T1.citizenship_category_wife, T1.amount FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE  T2.canton = 'True' AND T2.name  ilike '%Bern%'  AND T1.citizenship_category_wife = 'Switzerland' AND T1.citizenship_category_husband = 'Foreign country'
+UNION ALL
+SELECT T2.name, T1.year, T1.citizenship_category_husband , T1.citizenship_category_wife, T1.amount FROM marriage_citizenship as T1
+JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid
+WHERE  T2.canton = 'True' AND T2.name  ilike '%Bern%'  AND T1.citizenship_category_wife = 'Foreign country' AND T1.citizenship_category_husband = 'Switzerland') AS UN
+ORDER BY UN.amount DESC
+LIMIT 1;","SELECT T1.year, T1.citizenship_category_husband , T1.citizenship_category_wife, T1.amount FROM marriage_citizenship as T1 JOIN spatial_unit AS T2 on T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.name ilike '%Bern%' AND T2.canton = 'True' AND T1.year >= 1900 AND T1.year <= 2020 AND (T1.citizenship_category_husband = 'Switzerland' OR T1.citizenship_category_wife = 'Switzerland') AND (T1.citizenship_category_husband = 'Foreign country' OR T1.citizenship_category_wife = 'Foreign country') GROUP BY T1.year, T1.citizenship_category_husband, T1.citizenship_category_wife ORDER BY MAX(T1.amount) DESC, T1.year DESC LIMIT 1;",unknown,en,27.752959730103612,3094,0,0.0
+resident_population_birthplace_citizenship_type,"What was the total population count in each canton , considering both non-permanent and permanent residents on the year of 2018?","SELECT T1.year, T2.name, T1.population_type, T1.place_of_birth, T1.citizenship, T1.amount from resident_population_birthplace_citizenship_type AS T1
+JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.canton = 'True'  AND T1.year = 2018 AND T1.place_of_birth = 'Place of birth - total' AND T1.citizenship = 'Citizenship - total'
+ORDER BY  T1.amount DESC;","SELECT T2.name, T1.population_type, T1.amount FROM resident_population_birthplace_citizenship_type AS T1 JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.canton = 'True' AND T1.year = 2018 AND (T1.population_type = 'Non permanent resident population' OR T1.population_type = 'Permanent resident population') GROUP BY T2.name, T1.population_type, T1.amount;",hard,en,16.286470184102654,3059,0,0.0
+resident_population_birthplace_citizenship_type,How many people who were born in Switzerland did not possess permanent residency status by 2015? List by citizenship,"SELECT T1.year, T1.population_type,T1.place_of_birth, T1.citizenship, T1.amount from resident_population_birthplace_citizenship_type AS T1
+JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.country = 'True'  AND T1.year = 2015 AND T1.population_type = 'Non permanent resident population' AND T1.place_of_birth = 'Switzerland' AND T1.citizenship != 'Citizenship - total';","SELECT T1.citizenship, T1.amount FROM resident_population_birthplace_citizenship_type AS T1 JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.country = 'True' AND T1.year = 2015 AND T1.population_type = 'Non permanent resident population' AND T1.place_of_birth = 'Switzerland'",extra,en,13.426326841115952,3054,0,0.0
+resident_population_birthplace_citizenship_type,How many individuals with Swiss permanent residency were born within the country's borders on 2006?,"SELECT T1.year,T1.population_type,T1.place_of_birth,T1.citizenship, T1.amount from resident_population_birthplace_citizenship_type AS T1
+JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.country = 'True' AND T1.year = 2019 AND T1.population_type = 'Permanent resident population' AND T1.place_of_birth = 'Switzerland' AND T1.citizenship = 'Citizenship - total';","SELECT T1.year, T2.spatialunit_ontology, T2.name, T1.population_type,T1.place_of_birth, T1.amount FROM resident_population_birthplace_citizenship_type AS T1 JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.municipal = 'True' AND T1.year = 2006 AND T1.population_type = 'Permanent resident population' AND T1.place_of_birth = 'Switzerland' AND T1.citizenship = 'Citizenship - total'",extra,en,17.874094050377607,3051,0,0.0
+resident_population_birthplace_citizenship_type,How many individuals in each canton of Switzerland were born abroad and hold Swiss citizenship?,"SELECT T2.name, T1.place_of_birth, T1.citizenship, Sum(T1.amount) from resident_population_birthplace_citizenship_type AS T1
+JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.canton = 'True'   AND T1.place_of_birth = 'Abroad' AND T1.citizenship ilike '%Switzerland%'
+GROUP BY T2.name, T1.place_of_birth, T1.citizenship;","SELECT T2.name, T1.place_of_birth, T1.citizenship, Sum(T1.amount) FROM resident_population_birthplace_citizenship_type AS T1 JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.canton = 'True' AND T1.place_of_birth = 'Abroad' AND T1.citizenship = 'Citizenship - Switzerland' GROUP BY T2.name, T1.place_of_birth, T1.citizenship;",unknown,en,17.20144009590149,3046,0,0.0
+resident_population_birthplace_citizenship_type,How many of Swiss residenc were born within the country and had Iranian Citizenship on 2018?,"SELECT T1.year, T1.population_type, T1.place_of_birth, T1.citizenship, T1.amount from resident_population_birthplace_citizenship_type AS T1
+JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid
+WHERE T2.country = 'True'  AND T1.year = 2018 AND T1.place_of_birth = 'Switzerland' AND T1.citizenship ilike '%iran%';",SELECT T1.amount FROM resident_population_birthplace_citizenship_type AS T1 JOIN spatial_unit AS T2 ON T1.spatialunit_uid = T2.spatialunit_uid WHERE T2.municipal = 'True' AND T1.year = 2018 AND T1.population_type = 'Resident population' AND T1.place_of_birth = 'Switzerland' AND T1.citizenship = 'Iran',unknown,en,13.212334023788571,3054,0,0.0
+resident_population_birthplace_citizenship_type,How many vehicles do we have in canton zurich in 2020?,"SELECT S.name, sum(T.amount) as amount from stock_vehicles as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name ilike '%Zurich%'  and T.year = 2020 and S.canton = 'True'
+GROUP BY S.name;","SELECT S.name, S.spatialunit_ontology, sum(T.amount) as amount from stock_vehicles as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'True' AND S.name ilike '%Zurich%' AND T.year = 2020 GROUP BY S.name, S.spatialunit_ontology;",unknown,en,12.938536547124386,3046,0,0.0
+government_expenditure_by_function_cofog,What proportion of the Swiss budget will be spent on health in 2010 and 2020?,"SELECT year, SUM(percentage_of_total_expenses) as precentage_of_total_expenses_for_health
+FROM government_expenditure_by_function_cofog WHERE function_cofog_broad = 'Health'
+    AND institutional_sector = 'Government'
+    AND year <= 2020
+    AND year >= 2010
+GROUP BY year
+ORDER BY year ASC;","SELECT year, SUM(percentage_of_total_expenses) as proportion_of_budget FROM government_expenditure_by_function_cofog WHERE function_cofog_broad = 'Health' AND institutional_sector = 'Government' AND (year = 2010 OR year = 2020) GROUP BY year;",unknown,en,10.641284007579088,2550,0,0.0
+government_expenditure_by_function_cofog,What were the 3 largest sectors for spending of the confederation in year 2021 and how much were they?,"SELECT SUM(T.expenses_in_million_chf) as expenses_in_mio_chf,
+  T.function_cofog_narrow as section_with_the_highest_expenses_2020
+FROM government_expenditure_by_function_cofog as T
+WHERE institutional_sector = 'Confederation' AND year = 2020
+GROUP BY T.function_cofog_narrow, T.year, T.institutional_sector
+ORDER BY SUM(expenses_in_million_chf) DESC LIMIT 3;","SELECT T.function_cofog_broad as sector, SUM(T.expenses_in_million_chf) as expenses_in_million_chf FROM government_expenditure_by_function_cofog as T WHERE T.institutional_sector = 'Confederation' AND T.year = 2021 GROUP BY T.function_cofog_broad ORDER BY expenses_in_million_chf DESC LIMIT 3;",unknown,en,13.178353710100055,2553,0,0.0
+government_expenditure_by_function_cofog,What proportion of the Swiss budget is invested in public safety each year?,"SELECT year, SUM(T.percentage_of_total_expenses) as percentage_of_total_expenses_for_safety
+FROM government_expenditure_by_function_cofog AS T
+WHERE LOWER(function_cofog_broad) LIKE '%public%safety%'
+    AND institutional_sector = 'Government'
+GROUP BY year
+ORDER BY year ASC;","SELECT year,     SUM(CASE         WHEN LOWER(function_cofog_narrow) LIKE '%police%'           OR LOWER(function_cofog_narrow) LIKE '%fire - protection%' THEN expenses_in_million_chf        ELSE 0      END) / SUM(expenses_in_million_chf) * 100     AS proportion_of_public_safety_budget FROM government_expenditure_by_function_cofog WHERE institutional_sector = 'Government'    AND year >= 2010 GROUP BY year ORDER BY year ASC;",unknown,en,18.310053335502744,2540,0,0.0
+medizinisch_technische_infrastruktur,Welches drei medizinischen Geräte hatten den meisten Zuwachs zwischen 2013 und 2021 in der Schweiz und wieviele Neuanschaffungen gab es jeweils?,"SELECT T.genutzte_infrastruktur,
+    SUM(CASE WHEN T.jahr = 2021 THEN T.anzahl_gerate ELSE - T.anzahl_gerate END) AS zuwachs_an_geraeten
+FROM medizinisch_technische_infrastruktur as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country
+    AND T.jahr IN (2013, 2021)
+GROUP BY T.genutzte_infrastruktur
+ORDER BY zuwachs_an_geraeten DESC
+LIMIT 3;","SELECT SUM(T1.anzahl_gerate) as anzahl_geräte_2013,  T1.genutzte_infrastruktur as gerät   FROM medizinisch_technische_infrastruktur as T1   JOIN spatial_unit as S1 on T1.spatialunit_uid = S1.spatialunit_uid   WHERE S1.canton = 'TRUE'    AND T1.jahr = 2013   GROUP BY T1.genutzte_infrastruktur ), Geräte2021 AS (   SUM(T2.anzahl_gerate) as anzahl_geräte_2021,    T2.genutzte_infrastruktur as gerät   FROM medizinisch_technische_infrastruktur as T2   JOIN spatial_unit as S2 on T2.spatialunit_uid = S2.spatialunit_uid   WHERE S2.canton = 'TRUE'    AND T2.jahr = 2021   GROUP BY T2.genutzte_infrastruktur )   G2013.gerät,   G2021.anzahl_geräte_2021 - G2013.anzahl_geräte_2013 AS zuwachs_geräte FROM Geräte2013 AS G2013 JOIN Geräte2021 AS G2021 ON G2013.gerät = G2021.gerät ORDER BY zuwachs_geräte DESC LIMIT 3",unknown,de,44.16273651085794,3914,0,0.0
+medizinisch_technische_infrastruktur,Welches war das medizinische Gerät 2021 in der Schweiz mit den meisten Untersuchungen und wieviele Untersuchungen gab es damit?,"SELECT T.genutzte_infrastruktur as meistgenutztes_geraet_2021,
+  SUM(anzahl_untersuchungen_total) as anzahl_untersuchungen
+FROM medizinisch_technische_infrastruktur as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+  AND jahr = '2021'
+GROUP BY T.genutzte_infrastruktur
+ORDER BY anzahl_untersuchungen DESC LIMIT 1;","SELECT T.genutzte_infrastruktur, SUM(T.anzahl_untersuchungen_total) as total_untersuchungen FROM medizinisch_technische_infrastruktur as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.country = 'TRUE'  AND T.jahr = 2021 GROUP BY T.genutzte_infrastruktur ORDER BY total_untersuchungen DESC LIMIT 1;",unknown,de,15.101520458236337,3902,0,0.0
+medizinisch_technische_infrastruktur,Welche fünf Kantone hatte 2021 die grösste medizinische Infrastruktur mit den meisten Geräten und wieviele Geräte waren es?,"SELECT S.name_de as kanton_mit_groesster_medizinischer_infrastruktur, SUM(T.anzahl_gerate) as anzahl_geraete
+FROM medizinisch_technische_infrastruktur as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+  AND T.jahr = 2021
+GROUP BY S.name_de
+ORDER BY anzahl_geraete DESC LIMIT 5;","SELECT S.name_de as kanton_mit_meisten_geraeten,     SUM(T.anzahl_gerate) as anzahl_geraete FROM medizinisch_technische_infrastruktur as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'  AND T.jahr = 2021 GROUP BY S.name_de ORDER BY anzahl_geraete DESC LIMIT 5;",unknown,de,15.512393906712532,3904,0,0.0
+volksabstimmung_nach_kanton_seit_1861,Welcher Vorlage in welchem Jahr hatte die meisten Nein Stimmen und bei welcher Wahlbeteiligung und wievielen Ja Stimmen in Prozent?,"SELECT T.vorlage, T.jahr, T.anzahl_nein_stimmen AS hoechste_anzahl_nein_stimmen, T.beteiligung_in_prozent, T.ja_in_prozent
+FROM volksabstimmung_nach_kanton_seit_1861 AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+ORDER BY hoechste_anzahl_nein_stimmen DESC LIMIT 1;","SELECT T.vorlage, T.jahr, T.beteiligung_in_prozent, T.anzahl_nein_stimmen, T.ja_in_prozent FROM volksabstimmung_nach_kanton_seit_1861 AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.country = 'TRUE' AND S.name_de = 'Schweiz' ORDER BY T.anzahl_nein_stimmen DESC, T.jahr DESC LIMIT 1;",unknown,de,16.276988035067916,3647,0,0.0
+volksabstimmung_nach_kanton_seit_1861,"Welches waren die drei Volksabstimmung mit der höchsten Beteiligung, wann fanden sie statt und wie hoch war die Beteiligung in Prozent?","SELECT T.jahr, MAX(T.beteiligung_in_prozent) AS hoechste_beteiligung_in_prozent, T.vorlage
+FROM volksabstimmung_nach_kanton_seit_1861 as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'
+AND T.beteiligung_in_prozent IS NOT NULL
+GROUP BY T.jahr, T.vorlage
+ORDER BY hoechste_beteiligung_in_prozent DESC
+LIMIT 3;","SELECT T.vorlage, T.jahr, T.beteiligung_in_prozent FROM volksabstimmung_nach_kanton_seit_1861 AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.country = 'TRUE' AND S.name_de = 'Schweiz' GROUP BY T.vorlage, T.jahr, T.beteiligung_in_prozent ORDER BY T.beteiligung_in_prozent DESC LIMIT 3;",unknown,de,16.171325424686074,3650,0,0.0
+volksabstimmung_nach_kanton_seit_1861,"Welches ist aktuellest Vorlage die schweizweit angenommen wurde, aber bei der in der Mehrheit der Kanton dagegen gestimmt wurde? Zeige auch wieviel Prozent Ja Stimmen sie Schweiz weit bekam.","SELECT T.vorlage,
+  MAX(CASE WHEN T.ja_in_prozent > 50 AND S.country = 'TRUE' THEN T.ja_in_prozent ELSE NULL END) AS angenommen_gesamt,
+  COUNT(CASE WHEN T.ja_in_prozent > 50 AND S.canton = 'TRUE' THEN 1 ELSE NULL END) AS angenommen_in,
+  COUNT(CASE WHEN T.ja_in_prozent <= 50 AND S.canton = 'TRUE' THEN 1 ELSE NULL END) AS abgelehnt_in
+FROM volksabstimmung_nach_kanton_seit_1861 AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+GROUP BY T.vorlage, T.jahr
+HAVING MAX(CASE WHEN T.ja_in_prozent > 50 AND S.country = 'TRUE' THEN T.ja_in_prozent ELSE NULL END) IS NOT NULL
+   AND COUNT(CASE WHEN T.ja_in_prozent <= 50 AND S.canton = 'TRUE' THEN 1 ELSE NULL END) > COUNT(CASE WHEN T.ja_in_prozent > 50 AND S.canton = 'TRUE' THEN 1 ELSE NULL END)
+ORDER BY T.jahr DESC LIMIT 1;","SELECT T.vorlage,   T.jahr,   S.name_de AS kanton,   T.ja_in_prozent,   T.beteiligung_in_prozent FROM   volksabstimmung_nach_kanton_seit_1861 AS T JOIN   spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE   S.canton = 'TRUE'   AND T.ja_in_prozent IS NOT NULL ORDER BY   T.ja_in_prozent DESC LIMIT 1 )   max_ja_percentage.vorlage,   max_ja_percentage.jahr,   max_ja_percentage.ja_in_prozent,   max_ja_percentage.beteiligung_in_prozent FROM   max_ja_percentage JOIN   (     COUNT(DISTINCT name_de) AS distinct_kantons,       S.name_de   FROM     volksabstimmung_nach_kanton_seit_1861 AS T   JOIN     spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid   WHERE     S.canton = 'TRUE'       AND T.jahr = max_ja_percentage.jahr   GROUP BY     S.name_de) AS kanton_counts ON   '1' = kanton_counts.distinct_kantons",unknown,de,40.52405687607825,3667,0,0.0
+basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr,Zeigen Sie mir den Gesamtstromverbrauch der Gemeinden in Basel-Landschaft im Jahr 2000 gegenüber 2020.,"SELECT T.jahr , SUM(T.endverbrauch_elektrizitaet_mwh) as gesamt_endverbrauch_elektrizitaet_mwh_2020
+FROM basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr IN (2000, 2020)
+GROUP BY T.jahr
+ORDER BY gesamt_endverbrauch_elektrizitaet_mwh_2020 DESC;","SELECT T1.endverbrauch_elektrizitaet_mwh AS endverbrauch_elektrizitaet_mwh_2000, T2.endverbrauch_elektrizitaet_mwh AS endverbrauch_elektrizitaet_mwh_2020 FROM ( 	 S.name AS gemeinde, T.endverbrauch_elektrizitaet_mwh 	FROM basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr as T 	JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid 	WHERE S.municipal = 'TRUE' AND T.jahr = 2000 ) AS T1 JOIN ( 	 S.name AS gemeinde, T.endverbrauch_elektrizitaet_mwh 	FROM basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr as T 	JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid 	WHERE S.municipal = 'TRUE' AND T.jahr = 2020 ) AS T2 ON T1.gemeinde = T2.gemeinde",unknown,de,32.93923529610038,2519,0,0.0
+basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr,Welche der Gemeinden Bottmingen und Birsfelden in Basel-Landschaft hatte 2018 den höchsten Stromverbrauch?,"SELECT S.name AS gemeinde, T.endverbrauch_elektrizitaet_mwh as endverbrauch_elektrizitaet_mwh_2018
+FROM basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2018
+    AND S.name IN ('Blauen', 'Blauen (BL)', 'Birsfelden', 'Birsfelden (BL)')
+ORDER BY T.endverbrauch_elektrizitaet_mwh DESC;","SELECT T.jahr, T.endverbrauch_elektrizitaet_mwh, S.name FROM basel_land_endverbrauch_von_ektrizitat_nach_gemeinde_und_jahr as T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND S.name IN ('Bottmingen', 'Birsfelden')   AND T.jahr = 2018 ORDER BY T.endverbrauch_elektrizitaet_mwh DESC LIMIT 1;",unknown,de,17.087152805179358,2519,0,0.0
+basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,Wie viele Reformierte gab es im Kanton Basel-Landschaft in 2022?,"SELECT SUM(T.anzahl_evangelisch_reformiert)
+FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2022;","SELECT SUM(T.anzahl_evangelisch_reformiert) AS number_reformed_evangelics FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' AND S.name IN ('Basel-Landschaft', 'Basel-Landschaft (CH)') AND T.jahr = 2022;",medium,de,14.778292816132307,2991,0,0.0
+basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,"Zwischen den Gemeinden Arlesheim und Birsfelden im Kanton Basel-Landschaft, welche hatte 2003 einen höheren Anteil an Protestanten?","SELECT S.name AS gemeinde, CAST(SUM(T.anzahl_evangelisch_reformiert) AS FLOAT) / SUM(T.gesamt_anzahl_personen) as proportion_protestants_2003
+FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name IN ('Ettingen', 'Ettingen (BL)', 'Birsfelden', 'Birsfelden (BL)')
+    AND T.jahr = 2003
+GROUP BY S.name
+ORDER BY proportion_protestants_2003 DESC;","SELECT T.jahr, S.name, CAST(SUM(T.anzahl_evangelisch_reformiert) AS FLOAT) / SUM(T.gesamt_anzahl_personen) as proportion_protestants_2003 FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde as T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' AND (S.name = 'Arlesheim' OR S.name = 'Birsfelden') AND T.jahr = 2003 GROUP BY S.name, T.jahr HAVING S.name = 'Arlesheim' OR (S.name = 'Birsfelden' AND CAST(SUM(T.anzahl_evangelisch_reformiert) AS FLOAT) / SUM(T.gesamt_anzahl_personen) > ( CAST(SUM(T2.anzahl_evangelisch_reformiert) AS FLOAT) / SUM(T2.gesamt_anzahl_personen) as proportion_protestants_2003 FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde as T2 JOIN spatial_unit AS S2 ON T2.spatialunit_uid = S2.spatialunit_uid WHERE S2.municipal = 'TRUE' AND S2.name = 'Arlesheim' AND T2.jahr = 2003 ))",unknown,de,40.58362498693168,3008,0,0.0
+basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,Wie hoch war der Anteil der römisch-katholischen Personen an der ausländischen Bevölkerung des Kantons Basel-Landschaft im Jahr 2021?,"SELECT SUM(CAST(T.anzahl_romisch_katholisch AS FLOAT)) / SUM(T.gesamt_anzahl_personen) AS proportion_foreign_romisch_katholisch_basel_land_2021
+FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2021
+    AND T.nationalitat = 'Ausland';","SELECT    T.jahr,   CAST(T.anzahl_romisch_katholisch AS FLOAT) / SUM(T.anzahl_unbekannt_konfession) * 100 AS proportion_catholic_foreigners_2021 FROM   basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde AS T JOIN   spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE   S.municipal = 'TRUE'   AND T.jahr = 2021   AND T.nationalitat = 'Ausland' GROUP BY   T.jahr;",unknown,de,19.91517266072333,3010,0,0.0
+basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde,Welches waren im Jahr 2022 die 3 Gemeinden mit dem höchsten Ausländeranteil im Kanton Basel-Landschaft?,"SELECT S.name AS gemeinde, SUM(CASE WHEN T.nationalitat = 'Ausland' THEN T.gesamt_anzahl_personen ELSE 0 END) / CAST(SUM(T.gesamt_anzahl_personen) AS FLOAT) AS proportion_foreign_residents
+FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde as T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2022
+GROUP BY S.name
+ORDER BY proportion_foreign_residents DESC
+LIMIT 3;","SELECT S.name,     (SUM(T.gesamt_anzahl_personen) - SUM(T.anzahl_romisch_katholisch) - SUM(T.anzahl_evangelisch_reformiert) - SUM(T.anzahl_christkatholisch)) / SUM(T.gesamt_anzahl_personen) AS proportion_foreigners_2022 FROM basel_land_bevolkerung_nach_nationalitat_konfession_gemeinde AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' AND T.jahr = 2022 GROUP BY S.name ORDER BY proportion_foreigners_2022 DESC LIMIT 3;",unknown,de,22.001501759514213,3002,0,0.0
+basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr,In welchem Jahr wurde die meiste Wohnfläche im Kanton Basel-Landschaft gekauft?,"SELECT T.jahr
+FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T
+GROUP BY T.jahr
+ORDER BY SUM(T.flache_in_m2) DESC
+LIMIT 1;","SELECT T.jahr, SUM(T.falle) AS wohnflaechen_in_m2 FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' GROUP BY T.jahr ORDER BY wohnflaechen_in_m2 DESC LIMIT 1",hard,de,13.423856372013688,2729,0,0.0
+basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr,"Zeigen Sie mir den Preis für Wohnbauland in Basel-Landschaft, dessen Name mit A beginnt, im Jahr 2012.","SELECT S.name, T.quadratmeterpreis_chf
+FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE T.jahr = 2008
+    AND S.name LIKE 'A%'
+LIMIT 10;","SELECT S.name, T.quadratmeterpreis_chf FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE T.jahr = 2012   AND S.name LIKE 'A%'   AND S.municipal = 'TRUE';",extra,de,13.015938833355904,2740,0,0.0
+basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr,Wie viel kostete ein Quadratmeter Wohnbauland in den fünf teuersten Gemeinden von Basel-Landschaft im Jahr 2005?,"SELECT S.name AS gemeinde, T.quadratmeterpreis_chf
+FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2005
+ORDER BY T.quadratmeterpreis_chf DESC
+LIMIT 5;",SELECT T.quadratmeterpreis_chf FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE T.jahr = 2005   AND S.municipal = 'TRUE' ORDER BY T.quadratmeterpreis_chf DESC LIMIT 5;,unknown,de,13.306875629350543,2743,0,0.0
+basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr,"Wie viel Wohnbauland wurde zwischen 2010 und 2012 in Pratteln, BL, gekauft?","SELECT SUM(T.flache_in_m2) as gesamt_flache_in_m2
+FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name IN ('Pratteln', 'Pratteln (BL)')
+    AND T.jahr >= 2010
+    AND T.jahr <= 2012;",SELECT SUM(T.falle) AS anzahl_wohnbauland_pratteln_bl FROM basel_land_quadratmeterpreis_wohnbauland_nach_gemeinde_und_jahr AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE T.jahr BETWEEN 2010 AND 2012 AND S.name = 'Pratteln',unknown,de,12.510864976793528,2736,0,0.0
+aargau_privatverkehr_bestand_nach_fahrzeugarten,Wie viele landwirtschaftliche Fahrzeuge gab es im Kanton Aargau im Jahr 2010?,"SELECT anzahl_landwirtschaftliche_motorfahrzeuge
+FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name = 'Canton Aargau'
+    AND T.jahr = 2010;",SELECT SUM(anzahl_landwirtschaftliche_motorfahrzeuge) AS anzahl_landwirtschaftliche_motorfahrzeuge FROM aargau_privatverkehr_bestand_nach_fahrzeugarten WHERE jahr = 2010,medium,de,8.184384908527136,3788,0,0.0
+aargau_privatverkehr_bestand_nach_fahrzeugarten,Wie hat sich der Bestand an Motorrädern und Personenwagen im Kanton Aargau im Zeitraum zwischen 1930 und 1960 entwickelt?,"SELECT T.jahr, anzahl_motorrader, anzahl_klein_motorrader, anzahl_motorfahrrader, anzahl_personenwagen
+FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name = 'Canton Aargau'
+    AND T.jahr >= 1930
+    AND T.jahr <= 1960;","SELECT T.jahr, T.anzahl_personenwagen, T.anzahl_motorrader FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name = 'Canton Aargau'   AND T.jahr >= 1930   AND T.jahr <= 1960;",extra,de,15.088441271334887,3802,0,0.0
+aargau_privatverkehr_bestand_nach_fahrzeugarten,Welche Gemeinde im Kanton Aargau hatte im Jahr 2020 am meisten Autos pro Einwohner?,"SELECT S.name AS gemeinde
+FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2020
+ORDER BY T.anzahl_personenwagen_pro_1000_einwohner DESC
+LIMIT 1;","SELECT S.name AS gemeinde, T.anzahl_personenwagen_pro_1000_einwohner FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' AND T.jahr = 2020 ORDER BY T.anzahl_personenwagen_pro_1000_einwohner DESC LIMIT 1;",unknown,de,15.2775924988091,3786,0,0.0
+aargau_privatverkehr_bestand_nach_fahrzeugarten,Wie hoch war die Zahl der Nutzfahrzeuge 1960 und 1980 im Kanton Aargau?,"SELECT T.jahr, anzahl_nutzfahrzeuge
+FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name = 'Canton Aargau'
+    AND T.jahr IN (1960, 1980);","SELECT T.jahr, T.anzahl_nutzfahrzeuge FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name = 'Canton Aargau'   AND T.jahr IN (1960, 1980)",unknown,de,13.44231796078384,3793,0,0.0
+aargau_privatverkehr_bestand_nach_fahrzeugarten,"Wie hoch war die Zahl der Nutzfahrzeuge in Abtwil, AG im Jahr 2000 ?","SELECT T.anzahl_nutzfahrzeuge
+FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name IN ('Abtwil', 'Abtwil (AG)')
+    AND T.jahr = 2000;","SELECT T.anzahl_nutzfahrzeuge FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND S.name IN ('Abtwil', 'Abtwil (AG)')   AND T.jahr = 2000;",unknown,de,13.077316626906395,3789,0,0.0
+aargau_privatverkehr_bestand_nach_fahrzeugarten,"Wie viele Kollektivfahrzeuge gab es 2022 in Wettingen, AG?","SELECT T.anzahl_kollektivfahrzeuge
+FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name IN ('Wettingen', 'Wettingen (AG)')
+    AND T.jahr = 2022;","SELECT T.anzahl_kollektivfahrzeuge FROM aargau_privatverkehr_bestand_nach_fahrzeugarten AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND S.name IN ('Wettingen', 'Wettingen (AG)')   AND T.jahr = 2022;",unknown,de,13.316221091896296,3787,0,0.0
+aargau_obst_rebbau_rebland_wein_ernte,Wie viel Fläche wurde im Jahr 2017 im Aargau für den Rotweinanbau genutzt?,"SELECT T.flache_rebland_rote_europaische_reben_ha, T.flache_rebland_kreuzung_rote_weisse_ha
+FROM aargau_obst_rebbau_rebland_wein_ernte AS T
+JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Aargau%'
+    AND T.jahr = 2017;",SELECT T.flache_rebland_rote_europaische_reben_ha + T.flache_rebland_kreuzung_rote_weisse_ha AS flache_rotwein_anbau_2017 FROM aargau_obst_rebbau_rebland_wein_ernte AS T JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Aargau%'   AND T.jahr = 2017,hard,de,15.680165309458971,3813,0,0.0
+aargau_obst_rebbau_rebland_wein_ernte,In welchem Jahr wurde im Aargau am meisten Wein geerntet?,"SELECT T.jahr
+FROM aargau_obst_rebbau_rebland_wein_ernte AS T
+JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Aargau%'
+GROUP BY T.jahr
+ORDER BY SUM(T.weinernte_total_hl) DESC
+LIMIT 1;","SELECT T.jahr, T.weinernte_total_hl FROM aargau_obst_rebbau_rebland_wein_ernte AS T JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Aargau%' ORDER BY T.weinernte_total_hl DESC LIMIT 1;",extra,de,13.336758820340037,3802,0,0.0
+aargau_obst_rebbau_rebland_wein_ernte,Um wie viel Franken hat sich der Gesamtwert der Weinernte im Aargau zwischen 1980 und 2016 verändert?,"SELECT (
+    SUM(CASE WHEN T.jahr = 2016 THEN T.erntewert_rot_1000_chf + T.erntewert_weiss_1000_chf ELSE 0 END) -
+    SUM(CASE WHEN T.jahr = 1980 THEN T.erntewert_rot_1000_chf + T.erntewert_weiss_1000_chf ELSE 0 END)
+) * 1000.0 AS wertanderung_1980_2016_chf
+FROM aargau_obst_rebbau_rebland_wein_ernte AS T
+JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Aargau%'
+    AND T.jahr IN (1980, 2016);","SELECT (   SUM(CASE WHEN T.jahr = 2016 THEN T.weinernte_total_hl * T.erntewert_total_chf_je_hl ELSE 0 END) -   SUM(CASE WHEN T.jahr = 1980 THEN T.weinernte_total_hl * T.erntewert_total_chf_je_hl ELSE 0 END) ) * 1000.0 AS wertanderung_1980_2016_chf FROM aargau_obst_rebbau_rebland_wein_ernte AS T JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Aargau%'   AND T.jahr IN (1980, 2016)",unknown,de,24.387729475274682,3822,0,0.0
+aargau_obst_rebbau_rebland_wein_ernte,Wie viele Quadratkilometer Rebfläche gab es im Aargau im Jahr 2018?,"SELECT CAST(T.flache_total_ha AS FLOAT) / 100 AS flache_total_km2
+FROM aargau_obst_rebbau_rebland_wein_ernte AS T
+JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Aargau%'
+    AND T.jahr = 2018;",SELECT T.flache_total_ha / 10000.0 AS rebflaechen_in_km2 FROM aargau_obst_rebbau_rebland_wein_ernte AS T JOIN spatial_unit as S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Aargau%'   AND T.jahr = 2018,unknown,de,13.34604898840189,3809,0,0.0
+aargau_brandversicherung_brandschaden_anzahl_schadensummen,Wie viele Brandfälle gab es im Jahr 2011 im Aargau?,"SELECT T.total_anzahl_schadenfalle
+FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Aargau%'
+    AND T.jahr = 2011;",SELECT T.total_anzahl_schadenfalle FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE' AND S.name LIKE '%Aargau%' AND T.jahr = 2011,hard,de,11.803570833057165,4259,0,0.0
+aargau_brandversicherung_brandschaden_anzahl_schadensummen,In welchem Jahr wurden im Aargau die meisten Brandstiftungen gemeldet?,"SELECT T.jahr
+FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Aargau%'
+ORDER BY T.vorsatzliche_brandstift_anzahl_schadenfalle DESC
+LIMIT 1;","SELECT T.jahr, T.vorsatzliche_brandstift_anzahl_schadenfalle FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE' AND S.name LIKE '%Aargau%' GROUP BY T.jahr ORDER BY T.vorsatzliche_brandstift_anzahl_schadenfalle DESC LIMIT 1",extra,de,15.391116751357913,4257,0,0.0
+aargau_brandversicherung_brandschaden_anzahl_schadensummen,Welches waren die 3 häufigsten Ursachen für Brandfälle im Aargau im Jahr 1985?,"WITH T1 AS (
+    SELECT * FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T
+    JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+    WHERE S.canton = 'TRUE'
+        AND S.name LIKE '%Aargau%'
+        AND T.jahr = 1985
+)
+SELECT T2.source_name
+FROM (
+    SELECT T1.feuerzeug_rauchzeug_licht_anzahl_schadenfalle as source, 'feuerzeug_rauchzeug_licht_anzahl_schadenfalle' as source_name
+    FROM T1 AS UNION ALL
+    SELECT T1.elektrizitaet_anzahl_schadenfalle as source, 'elektrizitaet_anzahl_schadenfalle' as source_name
+    FROM T1 AS UNION ALL
+    SELECT T1.vorsatzliche_brandstift_anzahl_schadenfalle as source, 'vorsatzliche_brandstift_anzahl_schadenfalle' as source_name
+    FROM T1 AS UNION ALL
+    SELECT T1.feuerungsanlagen_anzahl_schadenfalle as source, 'feuerungsanlagen_anzahl_schadenfalle' as source_name
+    FROM T1 AS UNION ALL
+    SELECT T1.explosion_anzahl_schadenfalle as source, 'explosion_anzahl_schadenfalle' as source_name
+    FROM T1 AS UNION ALL
+    SELECT T1.uebrige_anzahl_schadenfalle as source, 'uebrige_anzahl_schadenfalle' as source_name
+    FROM T1 AS UNION ALL
+    SELECT T1.unbekannt_anzahl_schadenfalle as source, 'unbekannt_anzahl_schadenfalle' as source_name
+    FROM T1
+) AS T2
+ORDER BY T2.source DESC
+LIMIT 3;","SELECT T.feuerzeug_rauchzeug_licht_anzahl_schadenfalle, T.elektrizitaet_anzahl_schadenfalle, T.vorsatzliche_brandstift_anzahl_schadenfalle FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Aargau%'   AND T.jahr = 1985 ORDER BY (T.feuerzeug_rauchzeug_licht_anzahl_schadenfalle + T.elektrizitaet_anzahl_schadenfalle + T.vorsatzliche_brandstift_anzahl_schadenfalle) DESC LIMIT 3;",unknown,de,23.454953348264098,4267,0,0.0
+aargau_brandversicherung_brandschaden_anzahl_schadensummen,Wie hoch waren die jährlichen Kosten in CHF für die durch Elektrizität und Explosionen verursachten Brandschäden im Kanton Aargau in den Jahren 2001 bis 2007?,"SELECT T.jahr, T.elektrizitaet_schaden_1000_chf * 1000 AS elektrizitaet_schaden_chf
+FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Aargau%'
+    AND T.jahr >= 2001
+    AND T.jahr <= 2007
+ORDER BY T.jahr DESC;","SELECT T.jahr, T.elektrizitaet_schaden_1000_chf + T.explosion_schaden_1000_chf AS jaehrliche_kosten_chf FROM aargau_brandversicherung_brandschaden_anzahl_schadensummen AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Aargau%'   AND T.jahr BETWEEN 2001 AND 2007;",unknown,de,17.46402576006949,4141,0,0.0
+thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,Wie setzt sich die erneuerbare Energieproduktion im Kanton Thurgau seit 2018 jährlich zusammen?,"SELECT
+    T.jahr,
+    SUM(biogasanlagen_abwasser_gwh),
+    SUM(biogasanlagen_industrie_gwh),
+    SUM(biogasanlagen_landwirtschaft_gwh),
+    SUM(biomasse_holz_gwh),
+    SUM(kehricht_gwh),
+    SUM(photovoltaik_gwh),
+    SUM(wasserkraft_gwh),
+    SUM(wind_gwh),
+    SUM(total_gwh)
+FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr >= 2018
+GROUP BY T.jahr;","SELECT    T.jahr,   SUM(T.wasserkraft_gwh) AS wasserkraft_gwh,   SUM(T.biomasse_holz_gwh) AS biomasse_holz_gwh,   SUM(T.biogasanlagen_landwirtschaft_gwh) AS biogasanlagen_landwirtschaft_gwh,   SUM(T.kehricht_gwh) AS kehricht_gwh,   SUM(T.biogasanlagen_industrie_gwh) AS biogasanlagen_industrie_gwh,   SUM(T.biogasanlagen_abwasser_gwh) AS biogasanlagen_abwasser_gwh,   SUM(T.photovoltaik_gwh) AS photovoltaik_gwh,   SUM(T.wind_gwh) AS wind_gwh,   SUM(T.total_gwh) AS total_gwh FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND T.jahr >= 2018 GROUP BY T.jahr ORDER BY T.jahr;",extra,de,35.67581753991544,3776,0,0.0
+thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,Wie viel Prozent der erneuerbaren Energie in Frauenfeld TG wurde im Jahr 2021 durch Solarenergie erzeugt?,"SELECT
+    100 * photovoltaik_gwh/total_gwh AS photovoltaik_prozent_frauenfeld_2021
+FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2021
+    AND S.name IN ('Frauenfeld', 'Frauenfeld (TG)');","SELECT 100.0 * T.photovoltaik_gwh / T.total_gwh AS prozent_solarenergie FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name IN ('Frauenfeld', 'Frauenfeld (TG)')   AND T.jahr = 2021",unknown,de,13.77260689996183,3780,0,0.0
+thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,Wie viele Gemeinden im Kanton Thurgau produzierten im Jahr 2019 Energie aus Wind?,"SELECT
+    COUNT(*) AS anzahl_gemeinden_wind_2019
+FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2019
+    AND T.wind_gwh > 0;",SELECT COUNT(*) FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde WHERE jahr = 2019 AND wind_gwh > 0,unknown,de,6.170219529420137,3771,0,0.0
+thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,Welche 3 Thurgauer Gemeinden weisen zwischen 2018 und 2021 den grössten Zuwachs an erneuerbarer Energieproduktion auf? Geben Sie auch den prozentualen Anstieg an.,"SELECT
+    S.name AS gemeinde,
+    (
+        100.0 * SUM( CASE WHEN T.jahr = 2021 THEN T.total_gwh ELSE 0 END) /
+        SUM( CASE WHEN T.jahr = 2018 THEN T.total_gwh ELSE 0 END
+    )) AS prozent_anstieg
+FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr IN (2018, 2021)
+GROUP BY S.name
+ORDER BY prozent_anstieg DESC
+LIMIT 3;","SELECT   S.name AS gemeinde,   (T.total_gwh_2021 - T.total_gwh_2018) * 100.0 / T.total_gwh_2018 AS prozentualer_anstieg FROM (       spatialunit_uid,     SUM(CASE WHEN jahr = 2018 THEN total_gwh ELSE 0 END) AS total_gwh_2018,     SUM(CASE WHEN jahr = 2021 THEN total_gwh ELSE 0 END) AS total_gwh_2021   FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde   WHERE jahr BETWEEN 2018 AND 2021   GROUP BY spatialunit_uid ) AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' ORDER BY prozentualer_anstieg DESC LIMIT 3;",unknown,de,29.07629470899701,3802,0,0.0
+thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,Wie viel erneuerbare Energie hat der Kanton Thurgau im Zeitraum 2017-2021 insgesamt produziert?,"SELECT SUM(T.total_gwh) AS total_gwh_2017_2021
+FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T
+WHERE T.jahr >= 2017
+    AND T.jahr <= 2021;",SELECT SUM(T.total_gwh) * 1000 AS total_mwh FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' AND T.jahr BETWEEN 2017 AND 2021,unknown,de,12.010304652154446,3783,0,0.0
+thurgau_erneuerbare_elektrizitatsproduktion_gemeinde,"Zeigen Sie mir die Produktion von Energie aus Sonne und Wind in Berg, TG im Jahr 2018.","SELECT T.photovoltaik_gwh, T.wind_gwh
+FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name IN ('Berg', 'Berg (TG)')
+    AND T.jahr = 2018;","SELECT T.photovoltaik_gwh + T.wind_gwh AS gesamt_sonne_wind_gwh FROM thurgau_erneuerbare_elektrizitatsproduktion_gemeinde AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE T.jahr = 2018 AND S.name IN ('Berg', 'Berg (TG)')",unknown,de,12.531066002324224,3773,0,0.0
+thurgau_beschaftigte_nach_sektoren_und_gemeinden,In welchem Jahr erreichte die Zahl der Beschäftigten im primären Sektor im Thurgau ihren Höhepunkt?,"SELECT T.jahr
+FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.sektor = 'Primär'
+GROUP BY T.jahr
+ORDER BY SUM(T.beschaftigte_personen) DESC LIMIT 1;","SELECT T.jahr, SUM(T.beschaftigte_personen) AS beschaftigte_personen_sektor_1 FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' AND T.sektor = 'Primär' GROUP BY T.jahr ORDER BY beschaftigte_personen_sektor_1 DESC LIMIT 1;",extra,de,15.139827022328973,3312,0,0.0
+thurgau_beschaftigte_nach_sektoren_und_gemeinden,Wie hoch ist die relative Veränderung der Beschäftigten in den einzelnen Wirtschaftssektoren im Thurgau in Prozent zwischen 2011 und 2021?,"SELECT
+    AGG.sektor,
+    (
+        100.0 *
+        (AGG.beschaftigte_personen_2021 - AGG.beschaftigte_personen_2011) /
+        AGG.beschaftigte_personen_2011
+    ) AS relative_veranderung_beschaftigte_personen
+FROM (
+    SELECT
+        T.sektor,
+        SUM(CASE WHEN T.jahr = 2021 THEN T.beschaftigte_personen ELSE 0 END) AS beschaftigte_personen_2021,
+        SUM(CASE WHEN T.jahr = 2011 THEN T.beschaftigte_personen ELSE 0 END) AS beschaftigte_personen_2011
+    FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T
+    JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+    WHERE S.municipal = 'TRUE'
+        AND T.jahr IN (2011, 2021)
+    GROUP BY T.sektor
+) AS AGG;","SELECT T.sektor,     T.jahr,     SUM(T.beschaftigte_personen) AS beschaftigte_personen   FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T   JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid   WHERE S.municipal = 'TRUE'     AND T.jahr IN (2011, 2021)   GROUP BY T.sektor, T.jahr )   s.sektor,   ((s2021.beschaftigte_personen - s2011.beschaftigte_personen) * 100.0 / s2011.beschaftigte_personen) AS veraenderung_prozent FROM   sector_counts AS s JOIN sector_counts AS s2011 ON s.sektor = s2011.sektor AND s.jahr = 2011 JOIN sector_counts AS s2021 ON s.sektor = s2021.sektor AND s.jahr = 2021",unknown,de,31.87523772008717,3328,0,0.0
+thurgau_beschaftigte_nach_sektoren_und_gemeinden,Wie viele Personen waren 2015 im primären Sektor in Uttwil TG beschäftigt?,"SELECT T.beschaftigte_personen
+FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name IN ('Uttwil', 'Uttwil (TG)')
+    AND T.jahr = 2015
+    AND T.sektor = 'Primär';","SELECT SUM(T.beschaftigte_personen) FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name IN ('Uttwil', 'Uttwil (TG)')   AND T.jahr = 2015   AND T.sektor = 'Primär'",unknown,de,13.346501611173153,3311,0,0.0
+thurgau_beschaftigte_nach_sektoren_und_gemeinden,"Wie viele Beschäftigte aus dem ersten Sektor gab es in Arbon und Egnach, Thurgau, in den Jahren 2012 und 2019?","SELECT S.name AS gemeinde, T.jahr, SUM(T.beschaftigte_personen) AS beschaftigte_personen_sektor_1
+FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name IN ('Arbon', 'Arbon (TG)', 'Egnach', 'Egnach (TG)')
+    AND T.jahr IN (2012, 2019)
+    AND T.sektor = 'Primär'
+GROUP BY T.jahr, S.name
+ORDER BY S.name, T.jahr;","SELECT T.jahr, SUM(T.beschaftigte_personen) FROM thurgau_beschaftigte_nach_sektoren_und_gemeinden AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name IN ('Arbon', 'Egnach')   AND S.municipal = 'TRUE'   AND T.jahr IN (2012, 2019)   AND T.sektor = 'Primär' GROUP BY T.jahr;",unknown,de,15.85845648497343,3324,0,0.0
+stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,Wie hoch war die monatliche Stickoxidkonzentration (in Teilen pro Milliarde) in der Stadt Zürich im Jahr 2019?,"SELECT T.monat, T.nox_ppb
+FROM stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name = 'Zürich'
+    AND T.jahr = 2019
+ORDER BY T.monat ASC;","SELECT    T.monat,   AVG(T.nox_ppb) AS avg_nox_ppb FROM   stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T JOIN   spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE   S.municipal = 'TRUE'   AND S.name = 'Zürich'   AND T.jahr = 2019   AND T.nox_ppb IS NOT NULL GROUP BY   T.monat ORDER BY   T.monat;",hard,de,19.92893479205668,4722,0,0.0
+stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,"Wie hoch war die durchschnittliche Kohlenmonoxid-Konzentration in der Zürcher Luft im Januar und im Juli, bezogen auf den Zeitraum 1990-2000?","SELECT
+    T.monat,
+    SUM(T.co_mg_m3) / COUNT(T.co_mg_m3) AS avg_co_mg_m3
+FROM stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name = 'Zürich'
+    AND T.jahr >= 1990
+    AND T.jahr <= 2000
+    AND T.co_mg_m3 IS NOT NULL
+    AND T.monat IN (1, 7)
+GROUP BY T.monat;","SELECT    'Januar' AS monat,   AVG(T.co_mg_m3) AS avg_co_mg_m3 FROM stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND S.name = 'Zürich'   AND T.monat = 1   AND T.jahr BETWEEN 1990 AND 2000   AND T.co_mg_m3 IS NOT NULL UNION ALL    'Juli' AS monat,   AVG(T.co_mg_m3) AS avg_co_mg_m3 FROM stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND S.name = 'Zürich'   AND T.monat = 7   AND T.jahr BETWEEN 1990 AND 2000   AND T.co_mg_m3 IS NOT NULL",unknown,de,43.991552609950304,4734,0,0.0
+stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,Wie viel Ozon war im Jahr 2005 jeden Monat in der Luft der Stadt Zürich?,"SELECT T.monat, T.o3_ug_m3 AS o3_ug_m3_2005
+FROM stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name = 'Zürich'
+    AND T.jahr = 2005;","SELECT    T.monat,   AVG(T.o3_ug_m3) AS avg_o3_ug_m3 FROM   stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T JOIN   spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE   S.municipal = 'TRUE'   AND S.name = 'Zürich'   AND T.jahr = 2005   AND T.o3_ug_m3 IS NOT NULL GROUP BY   T.monat;",unknown,de,19.276712192222476,4709,0,0.0
+stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983,Wann erreichte die Kohlenmonoxidkonzentration in der Luft in der Stadt Zürich ihr Maximum? Geben Sie auch die Konzentration in mg/m3 an.,"SELECT T.jahr, T.monat, T.co_mg_m3
+FROM stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name = 'Zürich'
+    AND T.co_mg_m3 IS NOT NULL
+ORDER BY T.co_mg_m3 DESC
+LIMIT 1;","SELECT T.jahr,   T.monat,   SUM(T.co_mg_m3) / COUNT(T.co_mg_m3) AS avg_co_mg_m3 FROM stadt_zurich_monatlich_luftqualitatsmessungen_seit_1983 AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND S.name = 'Zürich'   AND T.co_mg_m3 IS NOT NULL GROUP BY T.jahr, T.monat ORDER BY avg_co_mg_m3 DESC LIMIT 1",unknown,de,29.66468775458634,4726,0,0.0
+zurich_effektive_preise_wohnbauland,Zeigen Sie mir den Medianpreis für Wohnbauland im Kanton Zürich für jedes Jahr zwischen 2010 und 2020.,"SELECT T.jahr, T.median_preis_chf_pro_m2
+FROM zurich_effektive_preise_wohnbauland AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Zurich%'
+    AND T.jahr >= 2010
+    AND T.jahr <= 2020;","SELECT T.jahr, T.median_preis_chf_pro_m2 FROM zurich_effektive_preise_wohnbauland AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Zurich%'   AND T.jahr BETWEEN 2010 AND 2020 ORDER BY T.jahr;",hard,de,13.97085670568049,2954,0,0.0
+zurich_effektive_preise_wohnbauland,Wann hat der Medianpreis für Wohnbauland im Kanton Zürich seinen Höhepunkt erreicht?,"SELECT T.jahr
+FROM zurich_effektive_preise_wohnbauland AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Zurich%'
+ORDER BY T.median_preis_chf_pro_m2 DESC
+LIMIT 1;","SELECT T.jahr, T.median_preis_chf_pro_m2 FROM zurich_effektive_preise_wohnbauland AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE' AND S.name LIKE '%Zurich%' AND T.median_preis_chf_pro_m2 = ( MAX(T2.median_preis_chf_pro_m2) FROM zurich_effektive_preise_wohnbauland AS T2 JOIN spatial_unit AS S2 ON T2.spatialunit_uid = S2.spatialunit_uid WHERE S2.canton = 'TRUE' AND S2.name LIKE '%Zurich%')",extra,de,21.245260499417782,2943,0,0.0
+zurich_effektive_preise_wohnbauland,Wie viele Verkäufe von Wohnbauland gab es im Kanton Zürich in den Jahren 2015 und 2021?,"SELECT T.jahr, T.faelle
+FROM zurich_effektive_preise_wohnbauland AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Zurich%'
+    AND T.jahr IN (2015, 2021);","SELECT SUM(T.faelle) AS faelle_2015_2021 FROM zurich_effektive_preise_wohnbauland AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Zurich%'   AND T.jahr IN (2015, 2021);",unknown,de,13.136751415207982,2953,0,0.0
+zurich_effektive_preise_wohnbauland,In welchem Jahr ist der durchschnittliche Preis für Wohnbauland im Kanton Zürich am stärksten gestiegen (in CHF) im Vergleich zum Vorjahr?,"SELECT T.jahr
+FROM zurich_effektive_preise_wohnbauland AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+    AND S.name LIKE '%Zurich%'
+ORDER BY T.durschnitt_preis_chf_pro_m2 - LAG(T.durschnitt_preis_chf_pro_m2) OVER (ORDER BY T.jahr) DESC
+LIMIT 1;","SELECT T.jahr, (T.durschnitt_preis_chf_pro_m2 - LAG(T.durschnitt_preis_chf_pro_m2) OVER (ORDER BY T.jahr)) AS price_increase_chf FROM zurich_effektive_preise_wohnbauland AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'   AND S.name LIKE '%Zurich%' ORDER BY price_increase_chf DESC LIMIT 1;",unknown,de,16.821629725396633,2961,0,0.0
+basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,"Wie hoch war das durchschnittliche Reineinkommen in Matthäus, BS, 2015?","SELECT T.reineinkommen_mittelwert
+FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.residence_area = 'TRUE'
+    AND T.jahr = 2015
+    AND S.name = 'Matthäus';",SELECT T.reineinkommen_mittelwert FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.residence_area = 'TRUE' AND S.name = 'Matthäus' AND T.jahr = 2015,medium,de,12.00463966280222,4380,0,0.0
+basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,In welchem Wohnquartier in Basel-Stadt war die Einkommensungleichheit im Jahr 2020 am grössten?,"SELECT S.name
+FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.residence_area = 'TRUE'
+    AND T.jahr = 2020
+ORDER BY T.reineinkommen_gini_koeffizient DESC
+LIMIT 1;","SELECT S.name, T.reineinkommen_gini_koeffizient FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE T.jahr = 2020 ORDER BY T.reineinkommen_gini_koeffizient DESC LIMIT 1;",extra,de,13.354633884504437,4387,0,0.0
+basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,Wie hoch war das durchschnittliche steuerbare Einkommen im Kanton Basel-Stadt im Jahr 2014?,"SELECT (SUM(T.anzahl_veranlagungen * T.steuerbares_einkommen_mittelwert)) / SUM(T.anzahl_veranlagungen) AS steuerbares_einkommen_mittelwert_basel_stadt_2014
+FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.residence_area = 'TRUE'
+    AND T.jahr = 2014;",SELECT AVG(T.steuerbares_einkommen_mittelwert) FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.residence_area = 'TRUE' AND T.jahr = 2014,unknown,de,11.571652047336102,4385,0,0.0
+basel_stadt_steuerstatistik_kennzahlen_wohnvierteln,Wie stark hat sich das durchschnittliche steuerpflichtige Vermögen in Clara (BS) zwischen 1995 und 2015 verändert? Geben Sie den relativen Unterschied in Prozent an.,"SELECT
+    (
+        100.0 * SUM(CASE WHEN T.jahr = 2015 THEN T.steuerbares_vermogen_mittelwert ELSE - T.steuerbares_vermogen_mittelwert END) /
+        SUM(T.steuerbares_vermogen_mittelwert)
+     ) AS steuerbares_vermogen_mittelwert_prozent_aenderung_1995_2015
+FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.residence_area = 'TRUE'
+    AND S.name = 'Clara'
+    AND T.jahr IN (1995, 2015);","SELECT S.name, T.steuerbares_vermogen_mittelwert, T.jahr FROM basel_stadt_steuerstatistik_kennzahlen_wohnvierteln AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.residence_area = 'TRUE' AND S.name = 'Clara' ) ( ( ( ( ( SUM(CASE WHEN J1.jahr = 2015 THEN J1.steuerbares_vermogen_mittelwert ELSE 0 END) - SUM(CASE WHEN J1.jahr = 1995 THEN J1.steuerbares_vermogen_mittelwert ELSE 0 END) ) / SUM(CASE WHEN J1.jahr = 1995 THEN J1.steuerbares_vermogen_mittelwert ELSE 0 END) ) * 100 ) )::numeric(5,2) AS prozentuale_veraenderung FROM total_vermogen AS J1",unknown,de,32.7431016843766,4406,0,0.0
+basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,Wie hat sich die Wohnfläche pro Einwohner in der Altstadt Grossbasel über den Zeitraum 2015 - 2019 entwickelt?,"SELECT T.jahr, T.wohnflache_pro_person_m2
+FROM basel_stadt_kennzahlen_zu_den_basler_wohnvierteln AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.residence_area = 'TRUE'
+    AND S.name = 'Altstadt Grossbasel'
+    AND T.jahr >= 2015
+    AND T.jahr <= 2019
+ORDER BY T.jahr ASC;","SELECT T.jahr, (T.wohnflache_pro_person_m2 / T.erwerbstatigenquote) AS wohnflache_pro_einwohner FROM basel_stadt_kennzahlen_zu_den_basler_wohnvierteln AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name = 'Altstadt Grossbasel' AND T.jahr BETWEEN 2015 AND 2019 ORDER BY T.jahr",hard,de,16.824654184281826,6102,0,0.0
+basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,Wie heissen die 3 Wohngebiete in Basel-Stadt mit der kleinsten Wohnfläche pro Einwohner im Jahr 2020?,"SELECT S.name
+FROM basel_stadt_kennzahlen_zu_den_basler_wohnvierteln AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.residence_area = 'TRUE'
+    AND T.jahr = 2020
+ORDER BY T.wohnflache_pro_person_m2 ASC
+LIMIT 3;","SELECT S.name, T.wohnflache_pro_person_m2 FROM basel_stadt_kennzahlen_zu_den_basler_wohnvierteln AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.residence_area = 'TRUE' AND T.jahr = 2020 ORDER BY T.wohnflache_pro_person_m2 ASC LIMIT 3",extra,de,14.611258998513222,6099,0,0.0
+basel_stadt_kennzahlen_zu_den_basler_wohnvierteln,Wie hoch ist die relative Veränderung (in %) des Ausländeranteils zwischen 2018 und 2023 in den einzelnen Wohnvierteln von Basel-Stadt?,"SELECT
+    S.name,
+    (   100.0 * SUM(CASE WHEN T.jahr = 2023 THEN T.anteil_auslander ELSE - T.anteil_auslander END) /
+        SUM(CASE WHEN T.jahr = 2018 THEN T.anteil_auslander END)
+    ) AS prozent_aenderung_anteil_auslander_2018_2023
+FROM basel_stadt_kennzahlen_zu_den_basler_wohnvierteln AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.residence_area = 'TRUE'
+    AND T.jahr IN (2018, 2023)
+GROUP BY S.name ;","SELECT S.name,     (100.0 * (t2023.anteil_auslander - t2018.anteil_auslander) / t2018.anteil_auslander) AS prozent_aenderung_anteil_auslaender FROM spatial_unit AS S JOIN basel_stadt_kennzahlen_zu_den_basler_wohnvierteln AS t2018  ON S.spatialunit_uid = t2018.spatialunit_uid AND t2018.jahr = 2018 JOIN basel_stadt_kennzahlen_zu_den_basler_wohnvierteln AS t2023  ON S.spatialunit_uid = t2023.spatialunit_uid AND t2023.jahr = 2023 WHERE S.residence_area = 'TRUE' ORDER BY prozent_aenderung_anteil_auslaender DESC;",unknown,de,29.059515211731195,6112,0,0.0
+schwyz_standige_wohnbevolkerung_geschlecht_nationalitat,Wie hiessen die 3 bevölkerungsreichsten Gemeinden im Kanton Schwyz im Jahr 2015?,"SELECT S.name
+FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr = 2015
+GROUP BY S.name
+ORDER BY SUM(T.anzahl_personen) DESC
+LIMIT 3;","SELECT S.name, SUM(T.anzahl_personen) AS bevölkerung_2015 FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND T.jahr = 2015 GROUP BY S.name ORDER BY bevölkerung_2015 DESC LIMIT 3;",extra,de,14.970712514594197,3406,0,0.0
+schwyz_standige_wohnbevolkerung_geschlecht_nationalitat,Wie hoch war der Anteil der Männer an der schweizerischen und ausländischen Wohnbevölkerung im Kanton Schwyz in den Jahren 2015 bis 2020?,"SELECT
+    T.jahr,
+    (
+        SUM(CASE WHEN T.geschlecht = 'männlich' AND T.nationalitaet = 'Schweiz' THEN T.anzahl_personen END) /
+        SUM(CASE WHEN T.nationalitaet = 'Schweiz' THEN T.anzahl_personen END)
+    ) AS anteil_manner_schweizer,
+    (
+        SUM(CASE WHEN T.geschlecht = 'männlich' AND T.nationalitaet = 'Ausland' THEN T.anzahl_personen END) /
+        SUM(CASE WHEN T.nationalitaet = 'Ausland' THEN T.anzahl_personen END)
+    ) AS anteil_manner_auslander
+FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr >= 2015
+    AND T.jahr >= 2020
+GROUP BY T.jahr
+ORDER BY T.jahr ASC;","SELECT T.jahr,    'Schweiz' AS nationalitaet,    SUM(CASE WHEN T.geschlecht = 'männlich' THEN T.anzahl_personen END) /    NULLIF(SUM(CASE WHEN T.geschlecht IN ('männlich', 'weiblich') THEN T.anzahl_personen END), 0) * 100.0                                                  AS männer_anteil FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE' AND T.nationalitaet = 'Schweiz' AND T.jahr IN (2015, 2016, 2017, 2018, 2019, 2020) GROUP BY T.jahr, nationalitaet",unknown,de,51.27145551890135,3427,0,0.0
+schwyz_standige_wohnbevolkerung_geschlecht_nationalitat,Wie viele Einwohner gab es in Freienbach (SZ) im Zeitraum 2010 - 2020 ?,"SELECT T.jahr, SUM(T.anzahl_personen)
+FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND S.name IN ('Freienbach', 'Freienbach (SZ)')
+    AND T.jahr >= 2010
+    AND T.jahr <= 2020
+GROUP BY T.jahr
+ORDER BY T.jahr ASC;","SELECT T.jahr, SUM(T.anzahl_personen) AS anzahl_personen FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.municipal = 'TRUE'   AND T.jahr BETWEEN 2010 AND 2020   AND S.name IN ('Freienbach', 'Freienbach (SZ)') GROUP BY T.jahr ORDER BY T.jahr ASC;",unknown,de,16.922046821564436,3408,0,0.0
+schwyz_standige_wohnbevolkerung_geschlecht_nationalitat,Zeigen Sie mir den Anteil der ausländischen Bevölkerung (als Verhältnis) im Kanton Schwyz in jedem Jahr zwischen 2010 und 2020.,"SELECT
+    T.jahr,
+    (
+        SUM(CASE WHEN T.nationalitaet = 'Ausland' THEN T.anzahl_personen ELSE 0 END) /
+        SUM(T.anzahl_personen)
+    ) AS anteil_auslander
+FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T
+JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid
+WHERE S.municipal = 'TRUE'
+    AND T.jahr >= 2010
+    AND T.jahr <= 2020
+GROUP BY T.jahr
+ORDER BY T.jahr ASC;","SELECT T.jahr,     SUM(CASE WHEN T.geschlecht = 'männlich' THEN T.anzahl_personen ELSE 0 END) +     SUM(CASE WHEN T.geschlecht = 'weiblich' THEN T.anzahl_personen ELSE 0 END) AS auslaendische_personen   FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T   JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid   WHERE S.municipal = 'TRUE'     AND T.jahr IN (2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020)     AND T.nationalitaet != 'Schweiz'   GROUP BY T.jahr )   A.jahr,   (     100.0 * AVG(A.auslaendische_personen / T.gesamt_personen)   ) AS auslaendisch_anteil FROM auslaendige_bevoelkerung AS A JOIN (       T.jahr,     SUM(T.anzahl_personen) AS gesamt_personen   FROM schwyz_standige_wohnbevolkerung_geschlecht_nationalitat AS T   JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid   WHERE S.municipal = 'TRUE'     AND T.jahr IN (2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 20",unknown,de,50.96730634383857,3423,0,0.0
+energiebilanz_schweiz_in_tera_joule,"Bei der Umwandlung durch Kernkraftwerke, welche Energieträger sind da mit welchen Mengen durchschnittlich im Spiel?","SELECT
+    energietraeger,
+    AVG(energiemenge_in_tera_joule) as durchschnittliche_umwandlung_kernkraft_in_tj
+FROM energiebilanz_schweiz_in_tera_joule WHERE LOWER(nutzungs_sektor) LIKE '%umwandlung%'
+AND LOWER(nutzungs_sektor) LIKE '%kernkraftwerk%'
+AND energiemenge_in_tera_joule IS NOT NULL
+AND energiemenge_in_tera_joule != 0
+GROUP BY energietraeger
+ORDER BY durchschnittliche_umwandlung_kernkraft_in_tj ASC;","SELECT energietraeger,     AVG(energiemenge_in_tera_joule) AS avg_conversion   FROM     energiebilanz_schweiz_in_tera_joule   WHERE     jahr IS NOT NULL AND     LOWER(nutzungs_sektor) LIKE '%kernkraft%'   GROUP BY     energietraeger) * FROM NuclearConversions",unknown,de,13.44743688032031,2793,0,0.0
+energiebilanz_schweiz_in_tera_joule,Welches war der am meisten exportierten Energietraeger 2020 in der Schweiz und wieviel wurde exportiert?,"SELECT nutzungs_sektor, energietraeger, SUM(energiemenge_in_tera_joule) as tj_export_2020
+FROM energiebilanz_schweiz_in_tera_joule WHERE jahr = '2020'
+AND LOWER(nutzungs_sektor) LIKE '%export%'
+AND energiemenge_in_tera_joule IS NOT NULL
+GROUP BY energietraeger, nutzungs_sektor
+ORDER BY tj_export_2020 DESC;","SELECT nutzungs_sektor, energietraeger, SUM(energiemenge_in_tera_joule) as tj_export_2020 FROM energiebilanz_schweiz_in_tera_joule WHERE jahr = '2020' AND LOWER(nutzungs_sektor) LIKE '%export%' AND energiemenge_in_tera_joule IS NOT NULL GROUP BY energietraeger, nutzungs_sektor ORDER BY tj_export_2020 DESC LIMIT 1;",unknown,de,15.533009553328156,2790,0,0.0
+energiebilanz_schweiz_in_tera_joule,In 2020 auf welche Energieträger hat sich der Verbrauch von Haushalten gestützt? Gib die Energieträger und Energiemengen an.,"SELECT energietraeger, SUM(energiemenge_in_tera_joule) as energieverbrauch_in_tj
+FROM energiebilanz_schweiz_in_tera_joule WHERE jahr = '2020'
+AND LOWER(nutzungs_sektor) LIKE '%verbrauch%haushalt%'
+AND energiemenge_in_tera_joule IS NOT NULL
+AND energiemenge_in_tera_joule != 0
+GROUP BY energietraeger, nutzungs_sektor
+ORDER BY energieverbrauch_in_tj DESC;","SELECT nutzungs_sektor, SUM(energiemenge_in_tera_joule) as haushalts_verbrauch_in_tj FROM energiebilanz_schweiz_in_tera_joule WHERE jahr = '2020' AND LOWER(nutzungs_sektor) LIKE '%haushalte%' AND energiemenge_in_tera_joule IS NOT NULL AND energiemenge_in_tera_joule != 0 GROUP BY nutzungs_sektor ORDER BY haushalts_verbrauch_in_tj DESC;",unknown,de,16.946439052000642,2803,0,0.0
+ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,Welche Rentenarten gibt es in der Schweiz und was sind die durchschnittliche Ausgaben dafür pro Jahr?,"SELECT rententyp,
+  (AVG(rentensumme_in_tausend_franken) * 1000) as durchschnittliche_ausgaben_pro_jahr_chf
+FROM ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit WHERE staatsangehorigkeit_kategorie = 'Staatsangehörigkeit - Total'
+  AND wohnsitzstaat_kategorie = 'Wohnsitzstaat - Total'
+  AND geschlecht = 'Geschlecht - Total'
+GROUP BY rententyp
+ORDER BY durchschnittliche_ausgaben_pro_jahr_chf DESC;","SELECT DISTINCT rententyp as rentenarten_in_der_schweiz,     AVG(rentensumme_in_tausend_franken) as durchschnittliche_ausgaben_pro_jahr_in_CHF FROM ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit WHERE staatsangehorigkeit_kategorie = 'Staatsangehörigkeit - Total'  AND wohnsitzstaat_kategorie = 'Wohnsitzstaat - Total' GROUP BY rententyp ORDER BY durchschnittliche_ausgaben_pro_jahr_in_CHF DESC;",unknown,de,18.04633897729218,3607,0,0.0
+ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,"Was waren die Gesamtausgaben für Renten 2022 in Franken, wie verteilten sie sich auf die Rentenarten, auf wieviele Renten jeweils und was kam dabei als durchschnittliche Rente heraus? Ordne das Ergebnis nach Anzahl der Renten.","SELECT rententyp,
+  anzahl_renten AS renten_anzahl_2022,
+  1000 * rentensumme_in_tausend_franken AS rentengesamt_ausgaben_in_CHF,
+  renten_mittelwert_in_franken AS durchschnittliche_rente_in_CHF
+FROM ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit WHERE jahr = 2022
+  AND staatsangehorigkeit_kategorie = 'Staatsangehörigkeit - Total'
+  AND geschlecht = 'Geschlecht - Total'
+  AND wohnsitzstaat_kategorie = 'Wohnsitzstaat - Total'
+ORDER BY anzahl_renten DESC;","SELECT rententyp, SUM(rentensumme_in_tausend_franken) as rentensumme_in_franken, anzahl_renten FROM ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit WHERE jahr = 2022 AND staatsangehorigkeit_kategorie = 'Staatsangehörigkeit - Total' AND wohnsitzstaat_kategorie = 'Wohnsitzstaat - Total' GROUP BY rententyp ) R.rententyp, R.rentensumme_in_franken, R.anzahl_renten, (R.rentensumme_in_franken / R.anzahl_renten) as durchschnittliche_rente FROM renten_2022 AS R ORDER BY R.anzahl_renten DESC",unknown,de,23.409207455813885,3650,0,0.0
+ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit,Wie hoch war der Frauenanteil in prozent bei den Zusatzrenten für Ehepartner?,"SELECT
+  ROUND(100 * SUM(CASE WHEN geschlecht = 'Frau'
+       THEN anzahl_renten ELSE 0 END) /
+   SUM(CASE WHEN geschlecht = 'Geschlecht - Total'
+       THEN anzahl_renten ELSE 0 END)
+  , 2) AS prozent_frauenanteil_bei_ehepartner_zusatzrenten
+FROM ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit WHERE rententyp = 'Zusatzrente für Ehepartner'
+  AND staatsangehorigkeit_kategorie = 'Staatsangehörigkeit - Total' AND wohnsitzstaat_kategorie = 'Wohnsitzstaat - Total';","SELECT SUM(anzahl_renten) as zusatzrenten_frauen FROM ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit WHERE rententyp LIKE '%Ehepartner%' AND geschlecht = 'Frau' ), zusatzrenten_total as ( SUM(anzahl_renten) as zusatzrenten_total FROM ahv_renten_nach_wohnsitz_und_staatsangehoerigkeit WHERE rententyp LIKE '%Ehepartner%' ) (zusatzrenten_frauen * 100.0 / zusatzrenten_total) as frauenanteil_in_prozent FROM zusatzrenten_frauen, zusatzrenten_total",unknown,de,22.626197528094053,3602,0,0.0
+abstimmungsvorlagen_seit_1971,Welches waren die Themen der Volksabstimmungen in 2022?,"SELECT DISTINCT(T.thema)
+FROM abstimmungsvorlagen_seit_1971 as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'
+AND T.jahr = '2022' AND anzahl_abstimmungsvorlagen != 0;",SELECT DISTINCT thema FROM abstimmungsvorlagen_seit_1971 as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND jahr = 2022;,medium,de,10.379480661824346,2485,0,0.0
+abstimmungsvorlagen_seit_1971,In welchem Jahren gab es die Volksabstimmungen zum Thema Energie in der Schweiz?,"SELECT T.jahr
+FROM abstimmungsvorlagen_seit_1971 as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'
+AND T.thema LIKE '%Energie%' AND anzahl_abstimmungsvorlagen != 0
+ORDER BY jahr DESC;",SELECT T.jahr FROM abstimmungsvorlagen_seit_1971 as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND T.thema LIKE '%Energie%' AND anzahl_abstimmungsvorlagen != 0 ORDER BY jahr DESC;,extra,de,12.708668174222112,2488,0,0.0
+abstimmungsvorlagen_seit_1971,Welches Thema hatte die wenigsten Volksabstimmungen in den Jahren 1990 bis 2000?,"SELECT thema, SUM(anzahl_abstimmungsvorlagen) as vorlagen_pro_thema
+FROM abstimmungsvorlagen_seit_1971 as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND anzahl_abstimmungsvorlagen != 0
+AND jahr BETWEEN 1990 AND 2000
+GROUP BY thema
+ORDER BY vorlagen_pro_thema ASC
+LIMIT 1;","SELECT thema, MIN(jahr) as erstes_jahr FROM abstimmungsvorlagen_seit_1971 as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND anzahl_abstimmungsvorlagen != 0 AND T.thema LIKE '%Sozialpolitik%' GROUP BY thema LIMIT 1;",unknown,de,13.860208550468087,2495,0,0.0
+abstimmungsvorlagen_seit_1971,Wann gab es die letzte Volksabstimmungen zum Thema Forschung?,"SELECT MAX(jahr) as jahr_letzte_abstimmung
+FROM abstimmungsvorlagen_seit_1971 as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'
+AND anzahl_abstimmungsvorlagen != 0 AND T.thema LIKE '%Forschung%';",SELECT MAX(jahr) as letztes_jahr FROM abstimmungsvorlagen_seit_1971 as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND anzahl_abstimmungsvorlagen != 0 AND T.thema LIKE '%Forschung%';,unknown,de,12.577092081308365,2484,0,0.0
+abstimmungsvorlagen_seit_1971,Wieviele Abstimmungsvorlagen gab es im Jahr 2000?,"SELECT COUNT(*) as anzahl_abstimmungsvorlagen_im_jahr_2000
+FROM abstimmungsvorlagen_seit_1971 as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND T.jahr = 2000;",SELECT SUM(T.anzahl_abstimmungsvorlagen) AS abstimmungsvorlagen_im_jahr_2000 FROM abstimmungsvorlagen_seit_1971 AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND T.jahr = 2000;,unknown,de,13.279375592246652,2484,0,0.0
+abstimmungsvorlagen_seit_1971,Wieviele Volksabstimmungen gab es vor dem Jahr 2000 zum Thema Energie?,"SELECT SUM(anzahl_abstimmungsvorlagen) as anzahl_abstimmungen_energie
+FROM abstimmungsvorlagen_seit_1971 as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'
+AND anzahl_abstimmungsvorlagen != 0 AND T.thema LIKE '%Energie%'
+AND jahr < 2000;",SELECT COUNT(*) AS vorlagen_vor_2000 FROM abstimmungsvorlagen_seit_1971 AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE' AND anzahl_abstimmungsvorlagen != 0 AND T.thema LIKE '%Energie%' AND T.jahr < 2000;,unknown,de,13.904232237488031,2490,0,0.0
+arztpraxen_ambulante_zentren,Wie hat sich das Verhàltnis Stellen zu Vollzeitàquivalenten bei den Schweizer Ärzten über die Jahre verändert?,"SELECT T.jahr,
+  AVG(T.anzahl_beschaeftigte) / AVG(T.anzahl_vollzeitaquivalente) AS stellenanzahl_pro_vollzeit_aequivalent
+FROM arztpraxen_ambulante_zentren AS T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.country = 'TRUE'
+  AND LOWER(T.altersgruppe) LIKE '%total%'
+  AND LOWER(T.geschlecht) LIKE '%total%'
+  AND LOWER(T.rechtsform) LIKE '%total%'
+GROUP BY T.jahr
+ORDER BY T.jahr ASC;","SELECT T.jahr,    ROUND(100 * SUM(T.anzahl_beschaeftigte) / NULLIF(SUM(T.anzahl_vollzeitaquivalente), 0), 2) AS verhaeltnis_stellen_zu_vollzeit_equivalenten FROM arztpraxen_ambulante_zentren AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE' AND LOWER(T.geschlecht) LIKE '%mann%' GROUP BY T.jahr ORDER BY T.jahr",unknown,de,17.248745176941156,3469,0,0.0
+arztpraxen_ambulante_zentren,Welche Rechtsform hatte einen Zuwachs an Ärzten zwischen 2017 und 2021 und wie gross war der Zuwachs?,"SELECT T.rechtsform,
+  (SUM(CASE WHEN jahr = 2021 THEN T.anzahl_beschaeftigte ELSE 0 END) -
+   SUM(CASE WHEN jahr = 2017 THEN T.anzahl_beschaeftigte ELSE 0 END)) as zuwachs_aerzte_2017_bis_2021
+FROM arztpraxen_ambulante_zentren AS T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'
+  AND LOWER(T.rechtsform) NOT LIKE '%total%'
+  AND LOWER(T.altersgruppe) LIKE '%total%'
+  AND LOWER(T.geschlecht) LIKE '%total%'
+  AND T.jahr IN (2017, 2021)
+GROUP BY T.rechtsform;","SELECT T.rechtsform,    (T2.anzahl_beschaeftigte - T.anzahl_beschaeftigte) AS zuwachs_aerzte FROM arztpraxen_ambulante_zentren AS T JOIN arztpraxen_ambulante_zentren AS T2 ON T.spatialunit_uid = T2.spatialunit_uid                       AND T2.jahr = 2021                       AND T.jahr = 2017 WHERE (T2.anzahl_beschaeftigte - T.anzahl_beschaeftigte) > 0  AND LOWER(T.rechtsform) NOT LIKE '%total%' GROUP BY T.rechtsform, T2.anzahl_beschaeftigte ORDER BY zuwachs_aerzte DESC;",unknown,de,23.405544424429536,3473,0,0.0
+arztpraxen_ambulante_zentren,Welche drei Kanton hatten 2021 prozentual die meisten jungen Ärzte und Ärztinnen und wieviel Prozent waren es jeweils?,"SELECT S.name_de AS kanton,
+  ROUND(100 * SUM(CASE WHEN LOWER(T.altersgruppe) LIKE '%unter%' THEN T.anzahl_beschaeftigte ELSE 0 END) /
+        NULLIF(SUM(CASE WHEN LOWER(T.altersgruppe) LIKE '%total%' THEN T.anzahl_beschaeftigte ELSE 0 END), 0), 2)
+        AS prozent_junge_arzte_und_arztinnen
+FROM arztpraxen_ambulante_zentren AS T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+  AND LOWER(T.geschlecht) LIKE '%total%'
+  AND LOWER(T.rechtsform) LIKE '%total%'
+  AND T.jahr = 2021
+GROUP BY S.name_de
+ORDER BY prozent_junge_arzte_und_arztinnen DESC LIMIT 3;","SELECT S.name_de AS kanton,    ROUND(100 * SUM(CASE WHEN T.altersgruppe IN ('Unter 45 Jahre', '45-54 Jahre') THEN T.anzahl_beschaeftigte ELSE 0 END) /       NULLIF(SUM(CASE WHEN LOWER(T.altersgruppe) LIKE '%total%' THEN T.anzahl_beschaeftigte ELSE 0 END), 0), 2)       AS prozent_junge_aerzte FROM arztpraxen_ambulante_zentren AS T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE'  AND LOWER(T.geschlecht) LIKE '%total%'  AND LOWER(T.rechtsform) LIKE '%total%'  AND T.jahr = 2021 GROUP BY S.name_de ORDER BY prozent_junge_aerzte DESC LIMIT 3;",unknown,de,28.208096174523234,3476,0,0.0
+nationalratswahlen,In welchen Kantonen stand die Partei SVP 2019 nicht zur Wahl?,"SELECT S.name_de AS kanton_ohne_svp_2019
+FROM nationalratswahlen as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+  AND T.partei = 'SVP'
+  AND T.jahr = 2019
+  AND T.parteistarke_in_prozent IS NULL;",SELECT S.name_de FROM spatial_unit AS S LEFT JOIN nationalratswahlen AS T ON S.spatialunit_uid = T.spatialunit_uid AND T.jahr = 2019 AND T.partei = 'SVP' WHERE S.canton = 'TRUE' AND T.partei IS NULL,unknown,de,9.7294627353549,2771,0,0.0
+nationalratswahlen,Welche Partei war 2019 prozentual am stàrksten in der Schweiz und wie stark war sie?,"SELECT T.partei AS staerkste_partei_2019, T.parteistarke_in_prozent
+FROM nationalratswahlen as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'
+AND T.parteistarke_in_prozent IS NOT NULL AND T.jahr = 2019
+ORDER BY T.parteistarke_in_prozent DESC LIMIT 1;","SELECT T.partei AS staerkste_partei_2019, T.parteistarke_in_prozent FROM nationalratswahlen AS T JOIN spatial_unit AS S ON T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de = 'Schweiz' AND S.country = 'TRUE'  AND T.parteistarke_in_prozent IS NOT NULL AND T.jahr = 2019 ORDER BY T.parteistarke_in_prozent DESC LIMIT 1;",unknown,de,16.127336524426937,2780,0,0.0
+nationalratswahlen,Wann und in welchen Kantonen stand die Partei LEGA zur Wahl und welche Parteistärke hatte sie?,"SELECT S.name_de AS kanton, T.jahr, T.parteistarke_in_prozent AS parteienstaerke_Lega
+FROM nationalratswahlen as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.canton = 'TRUE'
+  AND T.partei = 'Lega'
+  AND T.parteistarke_in_prozent IS NOT NULL
+GROUP BY kanton, T.jahr, T.partei, T.parteistarke_in_prozent
+ORDER BY jahr ASC;","SELECT T.jahr, S.name_de, T.parteistarke_in_prozent FROM nationalratswahlen AS T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE T.partei = 'LEGA' AND T.parteistarke_in_prozent IS NOT NULL AND S.canton = 'TRUE'",unknown,de,11.017462471500039,2777,0,0.0
+median_strompreis_per_kanton,Welches sind die verschiedenen Stromverbrauchskategorien in der Schweiz?,"SELECT DISTINCT verbrauchskategorie, verbrauchskategorie_beschreibung
+FROM median_strompreis_per_kanton ORDER BY verbrauchskategorie;",SELECT DISTINCT verbrauchskategorie FROM median_strompreis_per_kanton JOIN spatial_unit ON median_strompreis_per_kanton.spatialunit_uid = spatial_unit.spatialunit_uid WHERE spatialunit.canton = 'TRUE';,medium,de,9.21975415572524,2834,0,0.0
+median_strompreis_per_kanton,Wie haben sich die Standardstrompreise für kleine Unternehmen im Kanton Neuenburg zwischen 2017 und 2023 entwickelt?,"SELECT T.jahr, T.energieprodukt, T.verbrauchskategorie, T.mittlerer_preis_rappen_pro_kwh
+FROM median_strompreis_per_kanton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de LIKE '%Neuenburg%'
+    AND S.canton = 'TRUE'
+    AND T.jahr >= 2017
+    AND T.jahr <= 2023
+    AND T.energieprodukt = 'Standardprodukt'
+    AND T.verbrauchskategorie_beschreibung LIKE '%Kleinbetrieb%'
+ORDER BY T.jahr;","SELECT T.jahr, T.verbrauchskategorie, T.energieprodukt, T.mittlerer_preis_rappen_pro_kwh FROM median_strompreis_per_kanton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.name_de LIKE '%Neuenburg%' AND S.canton = 'TRUE' AND T.verbrauchskategorie = 'Kleines Unternehmen' AND T.energieprodukt = 'Standardprodukt' AND T.jahr BETWEEN 2017 AND 2023 ORDER BY T.jahr",extra,de,17.825673412531614,2851,0,0.0
+median_strompreis_per_kanton,Wie viel zahle ich in CHF für 1000 kWh bei einer 2-Zimmer-Wohnung im Kanton Bern im Jahr 2017?,"SELECT T.verbrauchskategorie, T.verbrauchskategorie_beschreibung,
+T.energieprodukt,
+T.mittlerer_preis_rappen_pro_kwh * 1000 / 100 as preis_franken_fur_1000_kwh_bern_2017_2_zimmerwohnung
+FROM median_strompreis_per_kanton as T
+JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid
+WHERE S.name_de LIKE '%Bern%'
+    AND S.canton = 'TRUE'
+    AND T.jahr = 2017
+    AND T.verbrauchskategorie_beschreibung LIKE '%2 - Zimmerwohnung%'
+    AND T.verbrauchskategorie_grosse_kwh_pro_jahr >= 1000;","SELECT T.verbrauchskategorie_beschreibung, T.mittlerer_preis_rappen_pro_kwh, T.mittlerer_preis_rappen_pro_kwh/100*1.15 AS preis_in_chf FROM median_strompreis_per_kanton as T JOIN spatial_unit as S on T.spatialunit_uid = S.spatialunit_uid WHERE S.canton = 'TRUE' AND S.name_de = 'Bern' AND T.jahr = 2017 AND T.verbrauchskategorie = 'H2' ORDER BY T.mittlerer_preis_rappen_pro_kwh DESC LIMIT 1",unknown,de,19.27305881679058,2592,0,0.0
+staatsausgaben_nach_aufgabenbereichen_cofog,"Wie hoch ist der Anteil des Schweizer Budgets, der 2010 und 2020 für die Gesundheit ausgegeben wird?","SELECT jahr, SUM(prozent_der_gesamtausgaben) as prozent_der_gesamtausgaben_fur_gesundheitswesen
+FROM staatsausgaben_nach_aufgabenbereichen_cofog WHERE aufgabenbereich_cofog_grobgliederung = 'Gesundheitswesen'
+    AND institutioneller_sektor = 'Staat'
+    AND jahr <= 2020
+    AND jahr >= 2010
+GROUP BY jahr
+ORDER BY jahr ASC;","SELECT jahr, SUM(prozent_der_gesamtausgaben) as prozent_des_schweizer_budgets_fuer_gesundheit FROM staatsausgaben_nach_aufgabenbereichen_cofog WHERE aufgabenbereich_cofog_grobgliederung = 'Gesundheit'   AND (jahr = 2010 OR jahr = 2020)   AND institutioneller_sektor = 'Staat' GROUP BY jahr ORDER BY jahr ASC;",unknown,de,14.685428196564317,2794,0,0.0
+staatsausgaben_nach_aufgabenbereichen_cofog,Welches waren die 3 grössten Ausgabenquellen des Bundes im Jahr 2021 und wie hoch waren diese?,"SELECT SUM(ausgaben_in_mio_chf) as ausgaben_in_mio_chf,
+  aufgabenbereich_cofog_feingliederung as ausgaben_bereich_mit_den_hoechsten_ausgaben_2020
+FROM staatsausgaben_nach_aufgabenbereichen_cofog WHERE institutioneller_sektor = 'Bund' AND jahr = 2020
+GROUP BY aufgabenbereich_cofog_feingliederung
+ORDER BY SUM(ausgaben_in_mio_chf) DESC LIMIT 3;","SELECT aufgabenbereich_cofog_grobgliederung, SUM(ausgaben_in_mio_chf) as ausgaben_in_mio_chf FROM staatsausgaben_nach_aufgabenbereichen_cofog WHERE jahr = 2021 AND institutioneller_sektor = 'Bund' GROUP BY aufgabenbereich_cofog_grobgliederung ORDER BY SUM(ausgaben_in_mio_chf) DESC LIMIT 3;",unknown,de,14.885395186021924,2790,0,0.0
+staatsausgaben_nach_aufgabenbereichen_cofog,Welcher Anteil des Schweizer Budgets wird jedes Jahr in Sicherheit investiert?,"SELECT jahr, SUM(prozent_der_gesamtausgaben) as prozent_der_gesamtausgaben_fur_sicherheit
+FROM staatsausgaben_nach_aufgabenbereichen_cofog WHERE LOWER(aufgabenbereich_cofog_feingliederung) LIKE '%sicherheit%'
+    AND institutioneller_sektor = 'Staat'
+GROUP BY jahr
+ORDER BY jahr ASC;",SELECT SUM(ausgaben_in_mio_chf) as jahres_sicherheitsausgaben_in_mio_chf FROM staatsausgaben_nach_aufgabenbereichen_cofog WHERE jahr = YEAR(CURRENT_DATE) - 1 AND (   LOWER(aufgabenbereich_cofog_feingliederung) LIKE '%polizei%'   OR LOWER(aufgabenbereich_cofog_feingliederung) LIKE '%feuerwehr%'   OR LOWER(aufgabenbereich_cofog_feingliederung) LIKE '%militaer%' ) AND institutioneller_sektor = 'Staat',unknown,de,18.94403152540326,2780,0,0.0

@@ -1,0 +1,23 @@
+[
+    {
+      "experiment": 8,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 21.53,
+      "soft": 23.61,
+      "partial": 31.94
+    },
+    {
+      "experiment": 8,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 20.83,
+      "soft": 22.92,
+      "partial": 31.25
+    },
+    {
+      "experiment": 8,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 20.83,
+      "soft": 22.92,
+      "partial": 31.25
+    }
+  ]

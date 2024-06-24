@@ -1,0 +1,202 @@
+{
+  "0": [
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 37.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 4.17,
+          "soft": 4.17,
+          "partial": 8.33,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 12.5,
+          "soft": 12.5,
+          "partial": 12.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 4.17,
+          "soft": 4.17,
+          "partial": 8.33,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 12.5,
+          "soft": 12.5,
+          "partial": 12.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 100.0,
+          "soft": 100.0,
+          "partial": 100.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 37.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 4.17,
+          "soft": 4.17,
+          "partial": 8.33,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 12.5,
+          "soft": 12.5,
+          "partial": 12.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 0.0,
+          "soft": 0.0,
+          "partial": 0.0,
+          "number_of_examples": 41
+        }
+      }
+    }
+  ]
+}

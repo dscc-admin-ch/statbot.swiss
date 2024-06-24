@@ -1,0 +1,51 @@
+[
+    {
+      "experiment": 1,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 15.28,
+      "soft": 16.67,
+      "partial": 21.53
+    },
+    {
+      "experiment": 2,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 19.44,
+      "soft": 20.14,
+      "partial": 25.0
+    },
+    {
+      "experiment": 3,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 18.75,
+      "soft": 20.14,
+      "partial": 28.47
+    },
+    {
+      "experiment": 4,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 25.0,
+      "soft": 26.39,
+      "partial": 34.72
+    },
+    {
+      "experiment": 5,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 23.61,
+      "soft": 27.78,
+      "partial": 36.11
+    },
+    {
+      "experiment": 6,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 17.36,
+      "soft": 22.22,
+      "partial": 29.86
+    },
+    {
+      "experiment": 8,
+      "model": "Mixtral-8x7B-Instruct-v0.1",
+      "hard": 24.31,
+      "soft": 27.08,
+      "partial": 34.72
+    }
+  ]

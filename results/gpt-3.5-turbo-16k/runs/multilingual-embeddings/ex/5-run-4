@@ -1,0 +1,27 @@
+[
+  {
+    "hard": 41.67,
+    "soft": 47.92,
+    "npartial": 49.31
+  },
+  {
+    "hard": 41.67,
+    "soft": 47.22,
+    "npartial": 50.0
+  },
+  {
+    "hard": 42.36,
+    "soft": 47.92,
+    "npartial": 49.31
+  },
+  {
+    "hard": 40.97,
+    "soft": 47.22,
+    "npartial": 49.31
+  },
+  {
+    "hard": 40.97,
+    "soft": 47.22,
+    "npartial": 48.61
+  }
+]

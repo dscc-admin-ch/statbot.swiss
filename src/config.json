@@ -1,0 +1,11 @@
+{ 
+    "db": {
+        "host" :"160.85.252.201",
+        "port" : "18001",
+        "database" : "postgres",
+        "username" : "statbot",
+        "password" : "statbot",
+        "schema": "experiment"
+    },
+    "open_api_key":""
+}

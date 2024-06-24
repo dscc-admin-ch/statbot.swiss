@@ -1,0 +1,334 @@
+{
+  "6": [
+    {
+      "en": {
+        "easy": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 25.0,
+          "soft": 33.33,
+          "partial": 37.5,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 11.11,
+          "soft": 16.67,
+          "partial": 22.22,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 55.56,
+          "partial": 55.56,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 45.83,
+          "soft": 66.67,
+          "partial": 70.83,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 24.39,
+          "soft": 24.39,
+          "partial": 24.39,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 37.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 25.0,
+          "soft": 33.33,
+          "partial": 37.5,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 11.11,
+          "soft": 16.67,
+          "partial": 22.22,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 55.56,
+          "partial": 55.56,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 45.83,
+          "soft": 66.67,
+          "partial": 70.83,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 24.39,
+          "soft": 24.39,
+          "partial": 24.39,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 25.0,
+          "soft": 33.33,
+          "partial": 37.5,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 11.11,
+          "soft": 16.67,
+          "partial": 22.22,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 55.56,
+          "partial": 55.56,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 45.83,
+          "soft": 66.67,
+          "partial": 70.83,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 24.39,
+          "soft": 24.39,
+          "partial": 24.39,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 37.5,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 25.0,
+          "soft": 33.33,
+          "partial": 37.5,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 11.11,
+          "soft": 16.67,
+          "partial": 22.22,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 55.56,
+          "partial": 55.56,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 45.83,
+          "soft": 66.67,
+          "partial": 70.83,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 24.39,
+          "soft": 24.39,
+          "partial": 24.39,
+          "number_of_examples": 41
+        }
+      }
+    },
+    {
+      "en": {
+        "easy": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 2
+        },
+        "medium": {
+          "hard": 50.0,
+          "soft": 50.0,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 11.11,
+          "soft": 11.11,
+          "partial": 11.11,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 25.0,
+          "soft": 33.33,
+          "partial": 37.5,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 11.11,
+          "soft": 16.67,
+          "partial": 22.22,
+          "number_of_examples": 18
+        }
+      },
+      "de": {
+        "easy": {
+          "hard": null,
+          "soft": null,
+          "partial": null,
+          "number_of_examples": 0.0
+        },
+        "medium": {
+          "hard": 37.5,
+          "soft": 37.5,
+          "partial": 50.0,
+          "number_of_examples": 8
+        },
+        "hard": {
+          "hard": 33.33,
+          "soft": 55.56,
+          "partial": 55.56,
+          "number_of_examples": 9
+        },
+        "extra": {
+          "hard": 45.83,
+          "soft": 66.67,
+          "partial": 70.83,
+          "number_of_examples": 24
+        },
+        "unknown": {
+          "hard": 24.39,
+          "soft": 24.39,
+          "partial": 24.39,
+          "number_of_examples": 41
+        }
+      }
+    }
+  ]
+}

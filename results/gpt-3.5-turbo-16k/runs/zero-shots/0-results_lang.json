@@ -1,0 +1,46 @@
+{
+  "0": [
+    {
+      "en": {
+        "hard": 8.2,
+        "soft": 8.2,
+        "partial": 9.84,
+        "number_of_examples": 61
+      },
+      "de": {
+        "hard": 17.07,
+        "soft": 18.29,
+        "partial": 23.17,
+        "number_of_examples": 82
+      }
+    },
+    {
+      "en": {
+        "hard": 8.2,
+        "soft": 8.2,
+        "partial": 9.84,
+        "number_of_examples": 61
+      },
+      "de": {
+        "hard": 17.07,
+        "soft": 17.07,
+        "partial": 23.17,
+        "number_of_examples": 82
+      }
+    },
+    {
+      "en": {
+        "hard": 9.84,
+        "soft": 9.84,
+        "partial": 11.48,
+        "number_of_examples": 61
+      },
+      "de": {
+        "hard": 17.07,
+        "soft": 17.07,
+        "partial": 23.17,
+        "number_of_examples": 82
+      }
+    }
+  ]
+}

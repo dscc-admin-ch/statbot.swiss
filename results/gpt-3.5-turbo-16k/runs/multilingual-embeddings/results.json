@@ -1,0 +1,191 @@
+{
+  "1": [
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 41.26
+    },
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 41.26
+    },
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 41.26
+    },
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 41.26
+    },
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 41.26
+    }
+  ],
+  "2": [
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 40.56
+    },
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 40.56
+    },
+    {
+      "hard": 34.27,
+      "soft": 39.16,
+      "npartial": 40.56
+    },
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 40.56
+    },
+    {
+      "hard": 33.57,
+      "soft": 38.46,
+      "npartial": 40.56
+    }
+  ],
+  "3": [
+    {
+      "hard": 38.46,
+      "soft": 44.76,
+      "npartial": 46.85
+    },
+    {
+      "hard": 39.16,
+      "soft": 46.15,
+      "npartial": 48.25
+    },
+    {
+      "hard": 39.16,
+      "soft": 46.15,
+      "npartial": 47.55
+    },
+    {
+      "hard": 39.16,
+      "soft": 46.15,
+      "npartial": 48.25
+    },
+    {
+      "hard": 39.16,
+      "soft": 45.45,
+      "npartial": 48.25
+    }
+  ],
+  "4": [
+    {
+      "hard": 39.16,
+      "soft": 46.15,
+      "npartial": 48.25
+    },
+    {
+      "hard": 39.86,
+      "soft": 46.85,
+      "npartial": 48.95
+    },
+    {
+      "hard": 38.46,
+      "soft": 45.45,
+      "npartial": 47.55
+    },
+    {
+      "hard": 39.16,
+      "soft": 46.15,
+      "npartial": 48.25
+    },
+    {
+      "hard": 39.16,
+      "soft": 46.15,
+      "npartial": 48.25
+    }
+  ],
+  "5": [
+    {
+      "hard": 42.66,
+      "soft": 48.25,
+      "npartial": 50.35
+    },
+    {
+      "hard": 41.96,
+      "soft": 48.95,
+      "npartial": 49.65
+    },
+    {
+      "hard": 41.26,
+      "soft": 48.25,
+      "npartial": 50.35
+    },
+    {
+      "hard": 41.26,
+      "soft": 47.55,
+      "npartial": 49.65
+    },
+    {
+      "hard": 41.26,
+      "soft": 48.25,
+      "npartial": 50.35
+    }
+  ],
+  "6": [
+    {
+      "hard": 41.26,
+      "soft": 46.15,
+      "npartial": 47.55
+    },
+    {
+      "hard": 40.56,
+      "soft": 45.45,
+      "npartial": 46.85
+    },
+    {
+      "hard": 40.56,
+      "soft": 45.45,
+      "npartial": 46.85
+    },
+    {
+      "hard": 39.86,
+      "soft": 44.76,
+      "npartial": 46.15
+    },
+    {
+      "hard": 40.56,
+      "soft": 45.45,
+      "npartial": 46.85
+    }
+  ],
+  "8": [
+    {
+      "hard": 39.16,
+      "soft": 44.76,
+      "npartial": 46.85
+    },
+    {
+      "hard": 39.86,
+      "soft": 45.45,
+      "npartial": 47.55
+    },
+    {
+      "hard": 39.16,
+      "soft": 44.76,
+      "npartial": 46.85
+    },
+    {
+      "hard": 38.46,
+      "soft": 44.06,
+      "npartial": 46.15
+    },
+    {
+      "hard": 39.86,
+      "soft": 45.45,
+      "npartial": 47.55
+    }
+  ]
+}
